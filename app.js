@@ -6,8 +6,9 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 
-var wechat-ship = require("./core/index");
+var index = require("./core/index");
 var config = require("./core/config")
+var log = require("./core/log");
 
 var app = express();
 
@@ -18,14 +19,15 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.set('port', process.argv[2] || 80);
 
+config.init();
+log.init();
 
 app.use(session({
-    store: new RedisStore(config.redisInfo),
+    store: new RedisStore(config.redis),
     secret: config.session.secret,
     resave: config.session.resave,
     saveUninitialized: config.session.saveUninitialized
 }));
-
 
 /// catch 404 and forward to error handler
 // app.use(function(req, res, next) {
@@ -57,10 +59,10 @@ app.use(session({
 //     });
 // });
 
-app.use("/", wechat-ship)
+app.use("/", index)
 
 var server = app.listen(app.get('port'), function() {
-  console.log("wechat-ship start success at port: " + app.get('port'));
+  log.dblog("info", "wechat-ship start success at port: " + app.get('port'));
 });
 
 
