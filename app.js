@@ -62,7 +62,7 @@ app.use(session({
 app.use("/", index)
 
 var server = app.listen(app.get('port'), function() {
-  log.dblog("info", "wechat-ship start success at port: " + app.get('port'));
+  log.applog("info", "wechat-ship start success at port: " + app.get('port'));
 });
 
 

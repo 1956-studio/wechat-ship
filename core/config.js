@@ -38,6 +38,16 @@ config.log = {
 			filename: "wechat-ship_dao.log"
 		}
 	},
+	app: {
+		console:{
+			level: "info",
+			label: "app"
+		},
+		file: {
+			level: "info",
+			filename: "wechat-ship_app.log"
+		}
+	},
 }
 
 config.init = function() {
