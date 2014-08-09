@@ -3,6 +3,10 @@ config = {}
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+config.wechat = {
+	default_reply: "系统默认回复"
+}
+
 config.redis = {
 	host: "localhost",
 	port: "6379",

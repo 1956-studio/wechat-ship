@@ -1,20 +1,29 @@
 var wechat = require('wechat');
 
+var dao = require('./dao');
+var config = require('./config');
 
-
-module.exports = wechat("").text(function (message, req, res){
-	
-}).image(function (message, req, res){
+module.exports = wechat("").text(function (info, req, res) {
+	dao.matchContent(info.Content, function(err, result) {
+		if(err) {
+			res.reply(err);
+		}else if(result != null) {
+			eval(result.cmd);
+		}else {
+			res.reply(config.wechat.default_reply);
+		}
+	});
+}).image(function (info, req, res) {
 	//TODO
-}).voice(function (message, req, res) {
+}).voice(function (info, req, res) {
 	//TODO
-}).video(function (message, req, res) {
+}).video(function (info, req, res) {
 	//TODO
-}).location(function (message, req, res) {
+}).location(function (info, req, res) {
   // TODO
-}).link(function (message, req, res) {
+}).link(function (info, req, res) {
   // TODO
-}).event(function (message, req, res) {
+}).event(function (info, req, res) {
   // TODO
 }).middlewarify();
 

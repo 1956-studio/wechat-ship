@@ -33,6 +33,10 @@ log.log = function(level, str) {
 	}
 }
 
+/*
+	7 kinds of level:
+	silly, debug, verbose, info, warn, error
+*/
 log.dblog = function(level, str) {
 	if(config.log.db != null) {
 		winston.loggers.get("db").log(level, "[db] " + str);
