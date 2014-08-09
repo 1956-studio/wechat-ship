@@ -1,0 +1,31 @@
+{
+  "name": "let-wechat",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": ">=4.0.0",
+  	"wechat": "*",
+  	"request": "*",
+  	"async": "*",
+  	"mongoose": "*",
+  	"redis": "*",
+    "connect-redis":">=2.0.0",
+    "winston":"*",
+    "static-favicon":"~1.0.0",
+    "cookie-parser": "~1.0.1",
+    "body-parser": "~1.0.0",
+    "express-session":"*"
+  },
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "repository":{
+	"type": "git",
+	"url": "git@github.com:LiSheep/let-wechat.git"
+  },
+  "author": "LiSheep",
+  "license": "MIT"
+}
