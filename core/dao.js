@@ -13,12 +13,14 @@ var dao = {};
 dao.matchContent = function(content, cb) {
 	if(!content) {
 		cb(error.get("msg_null"), null);
+		return;
 	}
 	//find all commands
 	db.findCommands(function(err, results) {
 		if(err) {
 			log.dblog("error", err);
 			cb(error.get("syserr"), null);
+			return
 		}
 		if(results == null) {
 			log.dblog("error", "findCommands find nothing");
@@ -36,4 +38,14 @@ dao.matchContent = function(content, cb) {
 	});
 }
 
+dao.getList = function(cb) {
+	db.findList(function(err, results){
+		if(err) {
+			log.dblog("error", err);
+			cb(error.get("syserr"), null);
+		}else{
+			cb(null, results);
+		}
+	});
+}
 module.exports = dao;

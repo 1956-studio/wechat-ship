@@ -9,8 +9,14 @@ var RedisStore = require('connect-redis')(session);
 var index = require("./core/index");
 var config = require("./core/config")
 var log = require("./core/log");
+var error = require("./core/error");
+
+
+var dao = require("./core/dao");	//tmp
 
 var app = express();
+
+var List = require("wechat").List 	//tmp
 
 
 app.use(favicon());
@@ -21,6 +27,7 @@ app.set('port', process.argv[2] || 80);
 
 config.init();
 log.init();
+error.init();
 
 app.use(session({
     store: new RedisStore(config.redis),
@@ -60,6 +67,17 @@ app.use(session({
 // });
 
 app.use("/", index)
+
+
+dao.getList(function(err, results){
+	if(err) {
+		throw err;
+	}
+	for (var i = 0; i < results.length; i++) {
+		console.log(results[i].list);
+		List.add(results[i].key, results[i].list);
+	};
+})
 
 var server = app.listen(app.get('port'), function() {
   log.applog("info", "wechat-ship start success at port: " + app.get('port'));

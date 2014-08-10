@@ -8,7 +8,7 @@ config.wechat = {
 }
 
 config.redis = {
-	host: "localhost",
+	host: "222.26.224.56",
 	port: "6379",
 	pass: "",
 };
