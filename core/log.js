@@ -24,6 +24,7 @@ log.init = function() {
 	winston.loggers.add("db", config.log.db);
 	winston.loggers.add("dao", config.log.dao);
 	winston.loggers.add("app", config.log.app);
+	winston.loggers.add("tools", config.log.tools);
 }
 
 //for debug use
@@ -52,6 +53,12 @@ log.daolog = function(level, str) {
 log.applog = function(level, str) {
 	if(config.log.app != null) {
 		winston.loggers.get("app").log(level, "[app] " + str);
+	}
+}
+
+log.toolslog = function(level, str) {
+	if(config.log.tools != null) {
+		winston.loggers.get("tools").log(level, "[tools] " + str);
 	}
 }
 

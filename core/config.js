@@ -52,6 +52,20 @@ config.log = {
 			filename: "wechat-ship_app.log"
 		}
 	},
+	tools: {
+		console:{
+			level: "info",
+			label: "tools"
+		},
+		file: {
+			level: "info",
+			filename: "wechat-ship_app.log"
+		}
+	},
+}
+
+config.request = {
+	timeout:3600,
 }
 
 config.init = function() {
