@@ -2,6 +2,9 @@ var wechat = require('wechat');
 
 var dao = require('./dao');
 var config = require('./config');
+var log = require("./log");
+var error = require("./error");
+var api = require("./api");
 
 module.exports = wechat("").text(function (info, req, res) {
 	dao.matchContent(info.Content, function(err, result) {
