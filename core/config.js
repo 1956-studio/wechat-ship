@@ -11,6 +11,7 @@ config.redis = {
 	host: "222.26.224.56",
 	port: "6379",
 	pass: "",
+	bufferDB: 2,
 };
 
 config.session = {
@@ -56,6 +57,36 @@ config.log = {
 		console:{
 			level: "info",
 			label: "tools"
+		},
+		file: {
+			level: "info",
+			filename: "wechat-ship_app.log"
+		}
+	},
+	api: {
+		console:{
+			level: "info",
+			label: "api"
+		},
+		file: {
+			level: "info",
+			filename: "wechat-ship_app.log"
+		}
+	},
+	user: {
+		console:{
+			level: "info",
+			label: "user"
+		},
+		file: {
+			level: "info",
+			filename: "wechat-ship_app.log"
+		}
+	},
+	buffer: {
+		console:{
+			level: "info",
+			label: "buffer"
 		},
 		file: {
 			level: "info",

@@ -25,6 +25,9 @@ log.init = function() {
 	winston.loggers.add("dao", config.log.dao);
 	winston.loggers.add("app", config.log.app);
 	winston.loggers.add("tools", config.log.tools);
+	winston.loggers.add("user", config.log.user);
+	winston.loggers.add("api", config.log.api);
+	winston.loggers.add("buffer", config.log.buffer);
 }
 
 //for debug use
@@ -62,5 +65,22 @@ log.toolslog = function(level, str) {
 	}
 }
 
+log.userlog = function(level, str) {
+	if(config.log.user != null) {
+		winston.loggers.get("user").log(level, "[user] " + str);
+	}
+}
+
+log.apilog = function(level, str) {
+	if(config.log.api != null) {
+		winston.loggers.get("api").log(level, "[api] " + str);
+	}
+}
+
+log.bufferlog = function(level, str) {
+	if(config.log.buffer != null) {
+		winston.loggers.get("buffer").log(level, "[buffer] " + str);
+	}
+}
 
 module.exports = log;
