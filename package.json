@@ -7,17 +7,20 @@
   },
   "dependencies": {
     "express": ">=4.0.0",
-  	"wechat": "*",
+    "wechat": "*",
   	"request": "*",
   	"async": "*",
   	"mongoose": "*",
   	"redis": "*",
+    "mysql":"*",
     "connect-redis":">=2.0.0",
     "winston":"*",
     "static-favicon":"~1.0.0",
     "cookie-parser": "~1.0.1",
     "body-parser": "~1.0.0",
-    "express-session":"*"
+    "express-session":"*",
+    "mocha":"*",
+    "should":"*"
   },
   "engines": {
     "node": ">= 0.8.0"

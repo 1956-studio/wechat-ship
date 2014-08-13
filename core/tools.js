@@ -17,4 +17,12 @@ tools.matchKeyWords = function(keys, strings, splitChar){
 	return null;
 }
 
+tools.objToString = function(json) {
+	return JSON.stringify(json);
+}
+
+tools.stringToObj = function(str) {
+	return eval("(" + str + ")");  
+}
+
 module.exports = tools;
