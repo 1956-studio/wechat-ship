@@ -12,6 +12,7 @@
   	"async": "*",
   	"mongoose": "*",
   	"redis": "*",
+    "static-favicon": "~1.0.0",
     "mysql":"*",
     "connect-redis":">=2.0.0",
     "winston":"*",
