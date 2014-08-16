@@ -1,0 +1,5 @@
+
+indexControllers = {};
+
+
+module.exports = indexControllers;

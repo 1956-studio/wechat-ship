@@ -14,8 +14,8 @@ db.findList = function(cb) {
 	result1 = {
 		key: "view",
 		list: [
-			["回复{a}查看我的性别", function(info, req, res){res.nowait('male')}],
-			["回复{b}查看我的年龄", function(info, req, res){res.nowait('18')}],
+			["reply {a} look my gender ", "res.nowait('male')"],
+			["reply {b} look my age", "res.nowait('18')"],
 		],
 	}
 	results.push(result1);

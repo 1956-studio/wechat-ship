@@ -1,4 +1,6 @@
 
+var _ = require("underscore");
+
 var db = require('./db');
 var error = require('./error');
 var log = require('./log');
@@ -45,8 +47,16 @@ dao.getList = function(cb) {
 			log.dblog("error", err);
 			cb(error.get("syserr"), null);
 		}else{
+			for(var i = 0; i < results.length; i++){
+				for(var j = 0; j < results[i].list.length; j++){
+					results[i].list[j][1] = function(info, res, req){
+						eval(results[i].list[j][1]);
+					}
+				}
+			}
 			cb(null, results);
 		}
 	});
 }
+
 module.exports = dao;

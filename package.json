@@ -6,6 +6,7 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "underscore":"*",
     "express": ">=4.0.0",
     "wechat": "*",
   	"request": "*",
@@ -21,7 +22,8 @@
     "body-parser": "~1.0.0",
     "express-session":"*",
     "mocha":"*",
-    "should":"*"
+    "should":"*",
+    "express-handlebars":"*"
   },
   "engines": {
     "node": ">= 0.8.0"
