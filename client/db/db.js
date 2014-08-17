@@ -1,0 +1,4 @@
+db = {};
+
+
+module.exports = db;
