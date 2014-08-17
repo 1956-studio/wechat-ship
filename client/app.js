@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
+var log = require('./log');
 
 var app = express();
 
@@ -26,7 +27,7 @@ app.use('/static', express.static(__dirname + '/public'));
 
 app.enable('view cache');
 
-/// enable when is production
+/// enable when become production
 // app.use(function(req, res, next) {
 //     var err = new Error('Not Found');
 //     err.status = 404;
@@ -58,7 +59,10 @@ app.enable('view cache');
 
 app.set('port', process.env.PORT || 3000);
 
+log.init();
+
 var server = app.listen(app.get('port'), function() {
+	log.applog("info", "web application start at port: " + app.get('port'));
 });
 
 module.exports = app;
