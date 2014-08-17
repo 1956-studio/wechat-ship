@@ -1,11 +1,28 @@
 config = {}
 
 var mongoose = require('mongoose');
+var mysql = require('mysql');
+
 var Schema = mongoose.Schema;
 
 config.wechat = {
 	default_reply: "系统默认回复"
 }
+
+config.mysql = [
+{
+	host     : 'localhost',
+	user     : 'root',
+	password : '',
+	database : "dljdchat"
+},
+// {
+// 	host     : 'localhost2',
+// 	user     : 'user',
+// 	password : 'pass',
+// 	database : "dljdchat"
+// },
+]
 
 config.redis = {
 	host: "222.26.224.56",
@@ -99,7 +116,10 @@ config.request = {
 	timeout:3600,
 }
 
+
 config.init = function() {
 	//TODO: read config here
 }
+
+
 module.exports = config;

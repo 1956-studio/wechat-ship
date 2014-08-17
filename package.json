@@ -23,7 +23,8 @@
     "express-session":"*",
     "mocha":"*",
     "should":"*",
-    "express-handlebars":"*"
+    "express-handlebars":"*",
+    "mysql":"*"
   },
   "engines": {
     "node": ">= 0.8.0"

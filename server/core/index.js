@@ -6,6 +6,7 @@ var config = require('./config');
 var log = require("./log");
 var error = require("./error");
 var api = require("./api");
+var mysqlapi = require("./mysqlapi");
 
 
 module.exports = wechat("").text(function (info, req, res) {
