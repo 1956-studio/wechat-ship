@@ -17,6 +17,7 @@
     "mysql":"*",
     "connect-redis":">=2.0.0",
     "winston":"*",
+    "winston-mongodb":"*",
     "static-favicon":"~1.0.0",
     "cookie-parser": "~1.0.1",
     "body-parser": "~1.0.0",

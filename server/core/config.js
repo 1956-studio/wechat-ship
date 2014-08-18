@@ -1,7 +1,6 @@
 config = {}
 
 var mongoose = require('mongoose');
-var mysql = require('mysql');
 
 var Schema = mongoose.Schema;
 
@@ -36,14 +35,19 @@ config.session = {
 	resave: true,
 	saveUninitialized:true,
 }
-
 config.log = {
 	console: true,
 	console_level: "info",
+	mongo_opt:{
+		level:"info",
+		dbUri:"mongodb://localhost/wechatlog",
+		errorTimeout:5000,
+		timeout:5000,
+	},
 	db: {
 		console:{
 			level: "info",
-			label: "db"
+			label: "db",
 		},
 		file: {
 			level: "info",

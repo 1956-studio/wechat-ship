@@ -1,6 +1,8 @@
 var winston = require('winston');
+require('winston-mongodb').MongoDB;
 
-var config = require("./config")
+var config = require("./config");
+
 
 var log = {};
 
@@ -28,6 +30,9 @@ log.init = function() {
 	winston.loggers.add("user", config.log.user);
 	winston.loggers.add("api", config.log.api);
 	winston.loggers.add("buffer", config.log.buffer);
+
+	//add write logs to mongoDB
+	logger.add(winston.transports.MongoDB, config.log.mongo_opt);
 }
 
 //for debug use
@@ -44,42 +49,49 @@ log.log = function(level, str) {
 log.dblog = function(level, str) {
 	if(config.log.db != null) {
 		winston.loggers.get("db").log(level, "[db] " + str);
+		logger.log(level, "[db] " + str);
 	}
 }
 
 log.daolog = function(level, str) {
 	if(config.log.dao != null) {
 		winston.loggers.get("dao").log(level, "[dao] " + str);
+		logger.log(level, "[dao] " + str);
 	}
 }
 
 log.applog = function(level, str) {
 	if(config.log.app != null) {
 		winston.loggers.get("app").log(level, "[app] " + str);
+		logger.log(level, "[app] " + str);
 	}
 }
 
 log.toolslog = function(level, str) {
 	if(config.log.tools != null) {
 		winston.loggers.get("tools").log(level, "[tools] " + str);
+		logger.log(level, "[tools] " + str);
 	}
 }
 
 log.userlog = function(level, str) {
 	if(config.log.user != null) {
 		winston.loggers.get("user").log(level, "[user] " + str);
+		logger.log(level, "[user] " + str);
 	}
 }
 
 log.apilog = function(level, str) {
 	if(config.log.api != null) {
 		winston.loggers.get("api").log(level, "[api] " + str);
+		logger.log(level, "[api] " + str);
 	}
 }
 
 log.bufferlog = function(level, str) {
 	if(config.log.buffer != null) {
 		winston.loggers.get("buffer").log(level, "[buffer] " + str);
+		logger.log(level, "[buffer] " + str);
 	}
 }
 
