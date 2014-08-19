@@ -135,7 +135,7 @@ api.sendTextImage = function(res, articls) {
 }
 
 api.writelog = function(level, str) {
-	log.apilog(level, str);
+	log.userlog(level, str);
 }
 
 
