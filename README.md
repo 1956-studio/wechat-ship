@@ -50,7 +50,7 @@ var articls = [{
 }]
 api.sendTextImage = function(res, articls);
 ```
-"打电话"回复([请参考wechat的wxsession]([https://github.com/node-webot/wechat#wxsession%E6%94%AF%E6%8C%81]))
+"打电话"回复([请参考wechat的wxsession](https://github.com/node-webot/wechat#wxsession%E6%94%AF%E6%8C%81]))
 
 "打电话"回复需要在配置页面先填写List配置信息
 ```
