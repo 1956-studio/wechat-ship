@@ -1,0 +1,5 @@
+
+configControllers = {};
+
+
+module.exports = configControllers;

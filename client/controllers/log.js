@@ -1,0 +1,5 @@
+
+logControllers = {};
+
+
+module.exports = logControllers;
