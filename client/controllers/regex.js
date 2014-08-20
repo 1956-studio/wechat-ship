@@ -13,4 +13,12 @@ regexControllers.getList = function (page, cb) {
 	}]);
 }
 
+regexControllers.getObject = function (id, cb) {
+	//TODO: with db
+	cb(null, {
+		title: "匹配1啊匹配1",
+		regex: "我是正则表达式...",
+		code: "console.log('hello');"
+	});
+}
 module.exports = regexControllers;

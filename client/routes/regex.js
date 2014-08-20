@@ -11,9 +11,19 @@ regex.list = function (req, res) {
 
 	regexControllers.getList(page, function (err, results) {
 		if(err){
-			res.render("regex", {});
+			res.render("regex/index", {});
 		}else{
-			res.render("regex", {regex: results});
+			res.render("regex/index", {regex: results});
+		}
+	});
+}
+
+regex.detail = function(req, res) {
+	regexControllers.getObject(req.params.id, function (err, result) {
+		if(err) {
+			res.redirect("regex/list");
+		}else {
+			res.render("regex/detail", result);
 		}
 	});
 }

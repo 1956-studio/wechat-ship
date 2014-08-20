@@ -42,5 +42,9 @@ router.get("/logs/:page", logs.list);
 
 router.get("/regex", regex.list);
 router.get("/regex/:page", regex.list);
+router.get("/regex/detail/:id", regex.detail);
+
+router.get("/list", regex.list);
+router.get("/list/:page", regex.list);
 
 module.exports = router;
