@@ -1,9 +1,21 @@
 var express = require('express');
 var router = express.Router();
 
-var listControllers = require("../controllers/regex.js");
+var regexControllers = require("../controllers/regex.js");
 
-router.get("/regex", function () {
-});
+var regex = {};
 
-module.exports = router;
+regex.list = function (req, res) {
+	var page = parseInt(req.params.page);
+	console.log(page);
+
+	regexControllers.getList(page, function (err, results) {
+		if(err){
+			res.render("regex", {});
+		}else{
+			res.render("regex", {regex: results});
+		}
+	});
+}
+
+module.exports = regex;

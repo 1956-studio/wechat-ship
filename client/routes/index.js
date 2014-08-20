@@ -3,6 +3,7 @@ var router = express.Router();
 
 var userControllers = require("../controllers/user.js");
 var logs = require("./logs");
+var regex = require("./regex");
 
 router.get('/', function(req, res) {
 	if(req.session.user){
@@ -36,6 +37,10 @@ router.all('/logout', function(req, res){
 	res.redirect('login');
 });
 
-router.get("/logs/", logs.list);
+router.get("/logs", logs.list);
 router.get("/logs/:page", logs.list);
+
+router.get("/regex", regex.list);
+router.get("/regex/:page", regex.list);
+
 module.exports = router;
