@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-var userControllers = require("../controllers/user.js")
+var userControllers = require("../controllers/user.js");
+var logs = require("./logs");
 
 router.get('/', function(req, res) {
 	if(req.session.user){
@@ -33,6 +34,8 @@ router.post('/login', function(req, res){
 router.all('/logout', function(req, res){
 	req.session.user = null;
 	res.redirect('login');
-})
+});
 
+router.get("/logs/", logs.list);
+router.get("/logs/:page", logs.list);
 module.exports = router;

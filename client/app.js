@@ -12,7 +12,18 @@ var log = require('./log');
 var app = express();
 
 // view engine setup
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.engine('handlebars', exphbs({
+	defaultLayout: 'main',
+	helpers: {
+		list:function (context, options) {
+			var ret = "";
+			for(var i=0, j=context.length; i<j; i++) {
+			    ret = ret + options.fn(context[i]);
+			}
+			return ret;
+		}
+	}
+}));
 app.set('view engine', 'handlebars');
 
 app.use(favicon());
@@ -23,6 +34,7 @@ app.use(session({secret: 'keyboard cat'}))
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+
 app.use('/static', express.static(__dirname + '/public'));
 
 app.enable('view cache');
