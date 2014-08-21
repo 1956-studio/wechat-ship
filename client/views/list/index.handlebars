@@ -1,0 +1,20 @@
+<table>
+	<tr>
+		<td>name</td><td>views</td>
+		{{#list list}}
+			<tr>
+			<td> <a href="/list/detail/{{{id}}}"> {{{name}}} </td>
+			<td>
+				{{#list views}}
+					<ul>
+						<li>{{{title}}} </li>
+					</ul>
+				{{/list}}
+			</td>
+			</tr>
+		{{/list}}
+	</tr>
+</table>
+
+
+{{>pager}}

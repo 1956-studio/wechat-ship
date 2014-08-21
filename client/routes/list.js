@@ -10,7 +10,7 @@ list.list = function (req, res) {
 		if(err){
 			res.render("list/index", {});
 		}else{
-			res.render("list/index", {regex: results});
+			res.render("list/index", results);
 		}
 	});
 }
@@ -25,4 +25,4 @@ list.detail = function(req, res) {
 	});
 }
 
-module.exports = router;
+module.exports = list;

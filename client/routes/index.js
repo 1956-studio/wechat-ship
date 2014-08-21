@@ -4,6 +4,7 @@ var router = express.Router();
 var userControllers = require("../controllers/user.js");
 var logs = require("./logs");
 var regex = require("./regex");
+var list = require("./list");
 
 router.get('/', function(req, res) {
 	if(req.session.user){
@@ -44,7 +45,8 @@ router.get("/regex", regex.list);
 router.get("/regex/:page", regex.list);
 router.get("/regex/detail/:id", regex.detail);
 
-router.get("/list", regex.list);
-router.get("/list/:page", regex.list);
+router.get("/list", list.list);
+router.get("/list/:page", list.list);
+router.get("/list/detail/:id", list.detail);
 
 module.exports = router;

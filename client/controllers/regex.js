@@ -4,10 +4,12 @@ regexControllers = {};
 regexControllers.getList = function (page, cb) {
 	//TODO: with db
 	cb(null, {regex:[{
+			id: 123,
 			title: "匹配1啊匹配1",
 			regex: "我是正则表达式..."
 		},
 		{
+			id: 321,
 			title: "匹配2啊匹配2",
 			regex: "我是正则表达式222..."
 		}],
@@ -22,6 +24,7 @@ regexControllers.getList = function (page, cb) {
 regexControllers.getObject = function (id, cb) {
 	//TODO: with db
 	cb(null, {
+		id: 123,
 		title: "匹配1啊匹配1",
 		regex: "我是正则表达式...",
 		code: "console.log('hello');"
