@@ -37,7 +37,7 @@ app.use('/', routes);
 
 app.use('/static', express.static(__dirname + '/public'));
 
-app.enable('view cache');
+// app.enable('view cache');
 
 /// enable when become production
 // app.use(function(req, res, next) {

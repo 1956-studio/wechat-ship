@@ -7,13 +7,12 @@ var regex = {};
 
 regex.list = function (req, res) {
 	var page = parseInt(req.params.page);
-	console.log(page);
 
 	regexControllers.getList(page, function (err, results) {
 		if(err){
 			res.render("regex/index", {});
 		}else{
-			res.render("regex/index", {regex: results});
+			res.render("regex/index", results);
 		}
 	});
 }
