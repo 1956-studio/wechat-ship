@@ -1,4 +1,4 @@
-PLUGIN = nprogress
+PLUGIN = nprogress bootstrap
 all:install
 install:
-	npm install . && bower install $(PLUGIN)
+	npm install . && npm install bower -g && bower install $(PLUGIN)
