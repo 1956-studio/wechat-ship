@@ -1,9 +1,9 @@
 <h2>logs</h2>
 
 <h5>search</h5>
-<form action="/logs/1" method="get">
+<form id="searchform" action="/logs/1" method="get">
 	关键字<input name="message" type="text" /> 时间<input type="text" name="begtime" /> - <input type="text" name="endtime" />
-	<input type="submit" value="查询"/>
+	<input type="button" value="查询" onclick="subform('searchform')" />
 </form>
 
 <ul>

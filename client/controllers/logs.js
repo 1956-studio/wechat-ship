@@ -16,7 +16,6 @@ uccess at port: 80", "timestamp" : ISODate("2014-08-18T07:37:59.205Z"), "level"
 	var begTime = times[0];
 	var endTime = times[1];
 	//TODO: with db
-
 	cb(null, {
 		logs:[
 			{

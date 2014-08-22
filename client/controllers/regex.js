@@ -6,12 +6,14 @@ regexControllers.getList = function (page, cb) {
 	cb(null, {regex:[{
 			id: 123,
 			title: "匹配1啊匹配1",
-			regex: "我是正则表达式..."
+			regex: "我是正则表达式...",
+			code: "console.log('hello')"
 		},
 		{
 			id: 321,
 			title: "匹配2啊匹配2",
-			regex: "我是正则表达式222..."
+			regex: "我是正则表达式222...",
+			code: ""
 		}],
 		page:{
 				current: 1,	/*当前页数：第current页*/

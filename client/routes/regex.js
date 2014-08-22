@@ -12,6 +12,7 @@ regex.list = function (req, res) {
 		if(err){
 			res.render("regex/index", {});
 		}else{
+			results.title = "regex"
 			res.render("regex/index", results);
 		}
 	});
@@ -22,6 +23,7 @@ regex.detail = function(req, res) {
 		if(err) {
 			res.redirect("regex/list");
 		}else {
+			results.title = "regex - detail";
 			res.render("regex/detail", result);
 		}
 	});

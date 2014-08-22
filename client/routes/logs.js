@@ -11,6 +11,7 @@ logs.list = function(req, res) {
 			if(err){
 				res.render("logs/index", {});
 			}else{
+				results.title = "logs"
 				res.render("logs/index", results);
 			}
 		}

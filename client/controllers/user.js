@@ -4,7 +4,7 @@ userControllers = {};
 
 userControllers.login = function(user){
 	//TODO:call db to get userinfo
-	return false;
+	return true;
 }
 
 module.exports = userControllers;

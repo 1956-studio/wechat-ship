@@ -10,6 +10,7 @@ list.list = function (req, res) {
 		if(err){
 			res.render("list/index", {});
 		}else{
+			results.title = "list"
 			res.render("list/index", results);
 		}
 	});
@@ -20,6 +21,7 @@ list.detail = function(req, res) {
 		if(err) {
 			res.redirect("list/list");
 		}else {
+			results.title = "list-detail"
 			res.render("list/detail", result);
 		}
 	});
