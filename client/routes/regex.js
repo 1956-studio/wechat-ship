@@ -23,7 +23,7 @@ regex.detail = function(req, res) {
 		if(err) {
 			res.redirect("regex/list");
 		}else {
-			results.title = "regex - detail";
+			result.title = "regex - detail";
 			res.render("regex/detail", result);
 		}
 	});

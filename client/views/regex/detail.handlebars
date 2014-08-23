@@ -1,3 +1,19 @@
+<script>
+    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+      lineNumbers: true,
+      theme: "monokai",
+      mode: "javascript",
+      autoCloseBrackets: true,
+      extraKeys: {
+        "F11": function(cm) {
+          cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+        },
+        "Esc": function(cm) {
+          if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+        }
+      }
+    });
+</script>
 <table>
 	<tr>
 		<td>title</td><td> {{title}} </td>
@@ -6,6 +22,11 @@
 		<td>regex</td><td> {{regex}} </td>
 	</tr>
 	<tr>
-		<td>code</td><td> {{code}} </td>
+		<td>code</td>
+		<td> 
+			<textarea id="code">
+			{{code}} 
+			</textarea>
+		</td>
 	</tr>
 </table>
