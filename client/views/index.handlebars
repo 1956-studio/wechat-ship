@@ -21,8 +21,8 @@
 	function to(url){
 		NProgress.start();
 		$.ajax({url:url, success: function(data){
-			$("body").html("");
-			$("body").html(data);
+			$("#body").html("");
+			$("#body").html(data);
 			NProgress.done();
 		}});
 	}
@@ -59,6 +59,7 @@ welcome: {{user.username}}
 	<li><a href="#" onclick="to('/logs');">logs</a></li>
 </ul>
 
+<div id='body'> </div>
 
 </body>
 </html>
