@@ -1,6 +1,7 @@
 
 regexControllers = {};
 
+// cb(err, res)
 regexControllers.getList = function (page, cb) {
 	//TODO: with db
 	cb(null, {regex:[{
@@ -23,6 +24,7 @@ regexControllers.getList = function (page, cb) {
 		}});
 }
 
+// cb(err, res)
 regexControllers.getObject = function (id, cb) {
 	//TODO: with db
 	cb(null, {
@@ -32,4 +34,21 @@ regexControllers.getObject = function (id, cb) {
 		code: "console.log('hello');"
 	});
 }
+
+// cb(err)
+regexControllers.addObject = function (regex, cb) {
+	/*
+	regex: title, regex, code
+	*/
+	cb(null);
+}
+
+// cb(err)
+regexControllers.updateObject = function (regex, cb) {
+	/*
+	regex:id title, regex, code
+	*/
+	cb(null);
+}
+
 module.exports = regexControllers;

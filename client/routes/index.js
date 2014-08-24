@@ -42,8 +42,10 @@ router.get("/logs", logs.list);
 router.get("/logs/:page", logs.list);
 
 router.get("/regex", regex.list);
-router.get("/regex/:page", regex.list);
 router.get("/regex/detail/:id", regex.detail);
+router.all("/regex/add", regex.add);
+router.get("/regex/:page", regex.list);
+router.post("/regex/update/", regex.update);
 
 router.get("/list", list.list);
 router.get("/list/:page", list.list);

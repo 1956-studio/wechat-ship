@@ -15,24 +15,23 @@
     });
 </script>
 
-<form id="form_update" action="/regex/update" method="post">
+<form id="form_add" action="/regex/add" method="post">
 <table>
 	<tr>
-		<td>title</td><td> <input type="text" name="title" value="{{title}}" /> </td>
+		<td>title</td><td><input name="title" /></td>
 	</tr>
 	<tr>
-		<td>regex</td><td> <input type="text" name="regex" value="{{regex}}" /> </td>
+		<td>regex</td><td><input name="regex" /></td>
 	</tr>
 	<tr>
 		<td>code</td>
 		<td> 
 			<textarea id="code" name="code">
-			{{code}} 
 			</textarea>
 		</td>
 	</tr>
 	<tr>
-		<td><input type='button' value="保存" onclick="subform('form_update')" /></ins></td>
+		<td><input type="button" value="保存" onclick="subform('form_add')"/>
 	</tr>
 </table>
 </form>
