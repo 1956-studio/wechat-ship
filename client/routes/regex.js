@@ -37,8 +37,8 @@ regex.add = function(req, res) {
 	if(req.method == "GET"){
 		res.render("regex/add");
 	}else if(req.method == "POST"){
-		regexControllers.addObject(req.body, function (err) {
-			res.redirect("/regex/list");
+		regexControllers.addObject(req.body, function (err, id) {
+			res.redirect("/regex/detail/" + id);
 		});
 	}
 }

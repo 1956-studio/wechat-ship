@@ -35,12 +35,13 @@ regexControllers.getObject = function (id, cb) {
 	});
 }
 
-// cb(err)
+// cb(err, id)
+// WARNING: this cb need callback an id
 regexControllers.addObject = function (regex, cb) {
 	/*
 	regex: title, regex, code
 	*/
-	cb(null);
+	cb(null, 11);
 }
 
 // cb(err)
