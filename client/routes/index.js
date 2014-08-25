@@ -50,8 +50,14 @@ router.get("/regex/list/:page", regex.list);
 router.post("/regex/update/", regex.update);
 
 router.get("/list", list.list);
+router.get("/list/list", list.list);
 router.get("/list/list/:page", list.list);
 router.get("/list/detail/:id", list.detail);
+router.post("/list/addlist", list.addList);
+router.get("/list/:listid/view/", list.viewsDetail);
+router.get("/list/:listid/view/:viewid", list.viewsDetail);
+router.post("/list/:listid/view/save", list.viewSave);
+router.post("/list/:listid/view/save/:viewid", list.viewSave);
 
 router.get("/config", config.getApp);
 router.get("/config/app", config.getApp);

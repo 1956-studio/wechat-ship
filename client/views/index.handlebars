@@ -21,7 +21,8 @@
     <script>
 	function to(url){
 		NProgress.start();
-		$.ajax({url:url, 
+		$.ajax({
+			url:url, 
 			success: function(data){
 				$("#body").html("");
 				$("#body").html(data);
@@ -29,7 +30,10 @@
 			},
 			error: function (error) {
 				console.log(error);
-				$.growl('NO SUCH PAGE FOUND', {
+				$.growl({
+					title: '\tNO SUCH PAGE FOUND',
+					icon: "glyphicon glyphicon-remove",
+				}, {
 					type: 'danger',
 					delay: 3000
 				});
@@ -40,14 +44,20 @@
 	
 	function subform (formId, action, method) {
 		NProgress.start();
+		if(document.getElementById("code") != null){
+			$('#code').html(editor.getValue());
+		}
 		$.ajax({
 			type: method || $("#"+formId).attr("method"),
 			url: action || $("#"+formId).attr("action"),
-			data: $("#"+formId).serialize(),
+			data: $("#"+formId).find('input, select, textarea, button').serialize(),
 			success: function (data) {
 				$("#body").html("");
 				$("#body").html(data);
-				$.growl('SAVING SUCCESS', {
+				$.growl({
+					title: '\tSAVING SUCCESS',
+					icon: "glyphicon glyphicon-ok",
+				}, {
 					type: 'info',
 					delay: 3000
 				});
@@ -55,7 +65,10 @@
 			},
 			error: function (error) {
 				console.log(error);
-				$.growl('SAVING ERROR', {
+				$.growl({
+					title: '\tSAVING ERROR',
+					icon: "glyphicon glyphicon-remove",					
+				}, {
 					type: 'danger',
 					delay: 3000
 				});

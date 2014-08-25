@@ -1,3 +1,10 @@
+
+<!-- Button trigger modal -->
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#List_Modal">
+  add List
+</button>
+
+
 <table>
 	<tr>
 		<td>name</td><td>views</td>
@@ -15,6 +22,31 @@
 		{{/list}}
 	</tr>
 </table>
+
+<!-- Modal -->
+<div class="modal" id="List_Modal" tabindex="-1" role="dialog" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;
+        </span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add List</h4>
+      </div>
+      <div class="modal-body">
+       <!--form begin-->
+       <form id="list_form" action="/list/addlist" method="post" >
+       		title: <input id="title_input" type="text" name="title" />
+       </form>
+       <!--form end -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" 
+        onclick="$('#List_Modal').modal('hide'); subform('list_form'); ">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 {{>pager}}
