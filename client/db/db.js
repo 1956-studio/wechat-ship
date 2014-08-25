@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-var db = mongoose.connect("mongodb://localhost/mongoose");
+var config_db = require('../config');
+var db = mongoose.connect(config_db.db.mongodb);
 var log = require('../log');
 
 var mongoTemplate = {};
@@ -84,9 +85,7 @@ model.findOne({}, function (err, blog) {
 // find the first one matched item by user's id
 mongoTemplate.readById = function (id, cb) {
 	if (id) {
-		var real_id = {"_id" : new mongoose.Schema.ObjectId(id)};
-
-		var value = model.findOne(real_id, function (err, dbconfig) {
+		var value = model.findById(id, function (err, dbconfig) {
 
 			if (err) {
 				log.dblog('error', "db.readOne " + err);
@@ -105,9 +104,8 @@ mongoTemplate.readById = function (id, cb) {
 
 mongoTemplate.removeById = function (id, cb) {
 	if (id) {
-		var real_id = {"_id" : new mongoose.Schema.ObjectId(id)};
-		model.findOne(real_id, function (err, result) {
-			if (!err) {
+		model.findById(id, function (err, result) {
+			if (!err && null != result) {
 				result.remove();
 				cb(null);
 			} else {
