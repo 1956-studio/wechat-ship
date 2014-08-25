@@ -1,0 +1,31 @@
+<script>
+    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+      lineNumbers: true,
+      theme: "monokai",
+      mode: "javascript",
+      autoCloseBrackets: true,
+      extraKeys: {
+        "F11": function(cm) {
+          cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+        },
+        "Esc": function(cm) {
+          if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+        }
+      }
+    });
+</script>
+
+<form id="view_form" action="/list/{{id}}/view/save/{{view.id}}" method="post">
+  <input name="id" type="hidden" value="{{view.id}}"/>
+	<table>
+		<tr>
+			<td>title: </td>
+			<td><input type="text" name="title" value="{{view.title}}" /></td>
+			<td>code:</td>
+			<td>
+				<textarea id="code" name="code">{{view.code}}</textarea>
+			</td>
+			<tr><td><input type="button" value="save" onclick="subform('view_form')"></td></tr>
+		</tr>
+	</table>
+</form>

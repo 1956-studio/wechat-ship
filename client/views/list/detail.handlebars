@@ -1,3 +1,8 @@
+<a href="#" onclick="to('/list/{{id}}/view')">add view</a>
+
+<script>
+var listid = {{id}};
+</script>
 <table>
 	<tr>
 		<td>title</td><td>{{name}}</td>
@@ -6,10 +11,11 @@
 	<td>
 		{{#list views}}
 			<ul>
-			<li>{{{title}}}</li>
-			<li>{{{code}}}</li>
+			<li><a href="#" onclick="to('/list/'+listid+'/view/{{{id}}}')">{{{title}}}</a></li>
 			</ul>
 		{{/list}}
 	</td>
 	</tr>
 </table>
+
+<a href="#" onclick="" />

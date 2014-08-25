@@ -1,10 +1,19 @@
 var express = require('express');
-var router = express.Router();
 
-var listControllers = require("../controllers/config.js");
+var configControllers = require("../controllers/config.js");
 
-router.get("/config", function () {
+config = {};
+
+config.getApp = function (req, res) {
+	configControllers.get(function (err, result) {
+		res.render("config/get", result);
+	});
+}
+
+config.getDb = function (req, res) {
+}
+
+config.getLog = function (req, res) {
 	
-});
-
-module.exports = router;
+}
+module.exports = config;

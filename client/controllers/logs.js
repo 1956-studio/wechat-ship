@@ -39,6 +39,6 @@ uccess at port: 80", "timestamp" : ISODate("2014-08-18T07:37:59.205Z"), "level"
 		}
 	});
 }
-	
+
 
 module.exports = logsControllers;
