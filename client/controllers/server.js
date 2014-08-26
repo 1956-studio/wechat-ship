@@ -14,8 +14,10 @@ var logdir = "/tmp/wechat_server";
  */
 server.startup = function(startPort, nums){
 	try{
-	fs.mkdirSync(logdir);
-	}catch(e){/*do nothing*/}
+		fs.mkdirSync(logdir);
+	}catch(e){
+		/*do nothing*/
+	}
 	if(typeof startPort != "number"){
 		throw "arg: startPort is not number";
 	}

@@ -6,6 +6,7 @@ var logs = require("./logs");
 var regex = require("./regex");
 var list = require("./list");
 var config = require("./config");
+var server = require("./server");
 
 router.get('/', function(req, res) {
 	if(req.session.user){
@@ -63,5 +64,8 @@ router.get("/config", config.getApp);
 router.get("/config/app", config.getApp);
 router.get("/config/db", config.getDb);
 router.get("/config/log", config.getLog);
+
+router.all("/server/startup", server.startup);
+router.get("/server/liststatus", server.listStatus);
 
 module.exports = router;
