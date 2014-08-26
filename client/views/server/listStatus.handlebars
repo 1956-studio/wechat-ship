@@ -3,8 +3,14 @@
 <table>
 	<tr>
 		<td>app</td><td>port</td><td>status</td>
+		{{#if result}}
 		{{#list result}}
-		<td>{{file}}</td>{{options}}<td></td><td>{{#if running}}Running{{else}}Not running{{/if}}</td>
+		<tr>
+		<td>{{file}}</td>
+		<td>{{options}}</td>
+		<td>{{#if running}}Running{{else}}Not running{{/if}}</td>
+		</tr>
 		{{/list}}
+		{{/if}}
 	</tr>	
 </table>

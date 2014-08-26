@@ -4,7 +4,7 @@ var forever = require("forever");
 
 var server = {};
 
-var serverdir = "../../server/app.js";
+var serverdir = "/home/workspace/node/wechat-ship/server/app.js";
 var logdir = "/tmp/wechat_server";
 
 /*

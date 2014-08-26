@@ -10,13 +10,13 @@ server.startup = function (req, res) {
 			res.writeHead(400);
 			res.end("port is not number");
 		}else {
-			res.redirect("/server/liststatus")
 			serverController.startup(port);
+			res.redirect("/server/liststatus");
 		}
 	}else if(req.method == "GET") {
 		res.render("server/startup");
 	}else {
-		res.writeHead(400);
+		res.wliststatusriteHead(400);
 		res.end();
 	}
 }
