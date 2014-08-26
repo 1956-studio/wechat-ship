@@ -2,9 +2,11 @@ var os = require("os");
 var fs = require("fs");
 var forever = require("forever");
 
+var config = require("../config");
+
 var server = {};
 
-var serverdir = "/home/workspace/node/wechat-ship/server/app.js";
+var serverdir = config.workdir + "/server/app.js";
 var logdir = "/tmp/wechat_server";
 
 /*

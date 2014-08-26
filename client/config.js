@@ -1,4 +1,8 @@
-config = {};
+var path = require('path');
+
+config = {
+	workdir: path.normalize(process.cwd() + "/..")
+};
 
 config.db = {
 	mongodb : "mongodb://localhost/ship"
