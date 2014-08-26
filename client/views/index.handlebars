@@ -55,7 +55,7 @@
 				$("#body").html("");
 				$("#body").html(data);
 				$.growl({
-					title: '\tSAVING SUCCESS',
+					title: '\tEXECUTE SUCCESS',
 					icon: "glyphicon glyphicon-ok",
 				}, {
 					type: 'info',
@@ -66,7 +66,7 @@
 			error: function (error) {
 				console.log(error);
 				$.growl({
-					title: '\tSAVING ERROR',
+					title: '\tEXECUTE ERROR',
 					icon: "glyphicon glyphicon-remove",					
 				}, {
 					type: 'danger',
