@@ -1,0 +1,10 @@
+<p color="red">{{err}}</p>
+
+<table>
+	<tr>
+		<td>app</td><td>port</td><td>status</td>
+		{{#list result}}
+		<td>{{file}}</td>{{options}}<td></td><td>{{#if running}}Running{{else}}Not running{{/if}}</td>
+		{{/list}}
+	</tr>	
+</table>
