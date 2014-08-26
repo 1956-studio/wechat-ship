@@ -1,6 +1,8 @@
 config = {};
 
-config.shipDB = "mongodb://localhost/shipDB";
+config.db = {
+	mongodb : "mongodb://localhost/ship"
+}
 
 config.log = {
 	db: {
@@ -33,6 +35,10 @@ config.log = {
 			filename: "wechat-ship_app.log"
 		}
 	}
+}
+
+config.page = {
+	size: 10
 }
 
 module.exports = config;
