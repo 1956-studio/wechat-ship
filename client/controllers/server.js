@@ -6,7 +6,7 @@ var config = require("../config");
 
 var server = {};
 
-var serverdir = config.workdir + "/server/app.js";
+var serverdir = path.join(config.workdir, "/server/app.js");
 var logdir = "/tmp/wechat_server";
 
 /*
