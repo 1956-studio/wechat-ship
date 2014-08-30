@@ -8,6 +8,10 @@ config.db = {
 	mongodb : "mongodb://localhost/ship"
 }
 
+config.db.log = {
+	mongodb : "mongodb://localhost/wechatlog"
+}
+
 config.log = {
 	db: {
 		console:{

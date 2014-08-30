@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var config = require('../config');
 var page = require('pager');
 
-var db = mongoose.connect(config.db.mongodb);
+var db = mongoose.connect(config.db.log.mongodb);
 
 var dbLog = {};
 
@@ -18,29 +18,55 @@ var log_schema = new mongoose.Schema({
 	level: String
 });
 
+function getCondition(condition, message, times, num, cb) {
+	if (message.length === 0 || message) {
+		
+	} else {
+		condition.message = message;
+	}
+
+	if (times.length != 2 || times) {
+		
+	} else {
+		condition.startDate = times[0];
+		condition.endDate = times[1];
+	}
+	
+// condtion = {
+// 	message: message,
+// 	startDate: startDate,
+// 	endDate: endDate
+// }
+
+// {message: "hello", timestamp: {$gt: startDate, $lt: endDate}}
+
+	cb(condition, num, cb);
+}
+
 var model = mongoose.model('log', log_schema);
 
 dbLog.getResult = function (num, message, times, cb) {
-	var page = new page(num);
 
-	var start = (page.num - 1) * page.pageSize;
+	var condition = {};
 
-	var condition = {
-		message: message,
-		time: { 
-			$and : [
-					{$gt : times[0]}, 
-					{$lt : times[1]}
-				]}
-	}
+	getCondition(condition, message, times, function (condition, num, cb) {
+		var page = new page(num);
 
-	model.find(condition).skip(start).limit(page.pageSize).exec(function (err, result) {
-		if (err) {
-			// TODO error cb
-			cb(null);
-		} else {
-			cb(null, result);
+		var start = (page.num - 1) * page.pageSize;
+
+		var cond = {
+			message: condition.message, 
+			timestamp: {$gt: condition.startDate, $lt: condition.endDate}
 		}
+
+		model.find(cond).skip(start).limit(page.pageSize).exec(function (err, result) {
+			if (err) {
+				// TODO error cb
+				cb(null);
+			} else {
+				cb(null, result);
+			}
+		});
 	});
 }
 
