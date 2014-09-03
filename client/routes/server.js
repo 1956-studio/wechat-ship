@@ -21,6 +21,7 @@ server.startup = function (req, res) {
 	}
 }
 
+// GET: /server
 // GET: /server/liststatus
 server.listStatus = function (req, res) {
 	serverController.list(function(err, result){
@@ -30,6 +31,30 @@ server.listStatus = function (req, res) {
 		res.render("server/listStatus", m_result);
 	});
 	
+}
+
+// GET: /server/stop
+server.stop = function (req, res) {
+	serverController.stopAll(function (err) {
+		if(err) {
+			res.writeHead(400);
+			res.end(err.toString());
+		}else {
+			res.redirect("/server");
+		}
+	});
+}
+
+// GET: /server/restart
+server.restart = function (req, res) {
+	serverController.restartAll(function (err) {
+		if(err) {
+			res.writeHead(400);
+			res.end(err.toString());
+		}else {
+			res.redirect("/server");
+		}
+	});
 }
 
 module.exports = server;

@@ -49,4 +49,6 @@ config.page = {
 	size: 10
 }
 
+config.testsever_url = "http://127.0.0.1/test"
+
 module.exports = config;

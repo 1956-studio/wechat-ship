@@ -51,10 +51,10 @@ module.exports.test = function (req, res, next) {
 	};
 	console.log(req.body);
 
-	if(req.body.code == null || req.body.code == "") {
+	if(req.body.Code == null || req.body.Code == "") {
 		res.writeHead(404);
 		res.end("no code was input");
 		return;
 	}
-	eval(req.body.code);
+	eval(req.body.Code);
 };

@@ -1,0 +1,32 @@
+<script>
+    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+      lineNumbers: true,
+      theme: "monokai",
+      mode: "javascript",
+      autoCloseBrackets: true,
+      extraKeys: {
+        "F11": function(cm) {
+          cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+        },
+        "Esc": function(cm) {
+          if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+        }
+      }
+    });
+</script>
+
+<form id="test_form" method="post" action="/test">
+	tousername: <input name="tousername" /><br />
+	fromusername: <input name="fromusername" /><br />
+	msgtype: <input name="msgtype" /><br />
+	content: <input name="content" /><br />
+	code: 
+	<textarea id="code" name="code"></textarea>
+
+	<input value="test" type="button" onclick="subform('test_form')" />
+</form>
+
+
+execute result: 
+<br />
+{{result}}
