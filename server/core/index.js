@@ -49,8 +49,31 @@ module.exports.test = function (req, res, next) {
 		MsgType: req.body.MsgType || "text",
 		Content: req.body.Content || ""
 	};
-	console.log(req.body);
+	res.reply = function (arg) {
+		if(typeof arg == "object") {
+			res.end("wechat send: " + arg);
+		}else if(typeof arg == "string") {
+			res.end(arg);
+		}else{
+			res.end("error reply argument");
+		}
+	}
 
+	res.wait = function (arg) {
+		if(typeof arg == "string") {
+			res.end("wechat wait: " + arg);
+		}else {
+			res.end("error wait argument");
+		}
+	}
+
+	res.nowait = function (arg) {
+		if(typeof arg == "string") {
+			res.end("wechat nowait: " + arg);
+		}else {
+			res.end("error nowait argument");
+		}
+	}
 	if(req.body.Code == null || req.body.Code == "") {
 		res.writeHead(404);
 		res.end("no code was input");
