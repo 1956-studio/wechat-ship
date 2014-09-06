@@ -1,6 +1,7 @@
 var os = require("os");
 var fs = require("fs");
 var forever = require("forever");
+var path = require("path");
 
 var config = require("../config");
 
