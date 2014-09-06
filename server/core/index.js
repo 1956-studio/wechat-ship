@@ -9,7 +9,7 @@ var api = require("./api");
 var mysqlapi = require("./mysqlapi");
 
 
-module.exports = wechat("").text(function (info, req, res) {
+module.exports.ship = wechat("keyboardcat123").text(function (info, req, res) {console.log(info);
 	dao.matchContent(info.Content, function(err, result) {
 		if(err) {
 			res.reply(err);
@@ -32,3 +32,52 @@ module.exports = wechat("").text(function (info, req, res) {
 }).event(function (info, req, res) {
   // TODO
 }).middlewarify();
+
+
+// wechat-ship test API
+// POST: /test
+// body: {  ToUserName: 'ToUser',
+//   FromUserName: 'FromUser',
+//   MsgType: 'text',
+//   Content: '' ,
+//   code: "" -> can't be null
+// }
+module.exports.test = function (req, res, next) {
+	info = {
+		ToUserName: req.body.ToUserName || "ToUser",
+		FromUserName: req.body.FromUserName || "FromUser",
+		MsgType: req.body.MsgType || "text",
+		Content: req.body.Content || ""
+	};
+	res.reply = function (arg) {
+		if(typeof arg == "object") {
+			res.end("wechat send: " + arg);
+		}else if(typeof arg == "string") {
+			res.end(arg);
+		}else{
+			res.end("error reply argument");
+		}
+	}
+
+	res.wait = function (arg) {
+		if(typeof arg == "string") {
+			res.end("wechat wait: " + arg);
+		}else {
+			res.end("error wait argument");
+		}
+	}
+
+	res.nowait = function (arg) {
+		if(typeof arg == "string") {
+			res.end("wechat nowait: " + arg);
+		}else {
+			res.end("error nowait argument");
+		}
+	}
+	if(req.body.Code == null || req.body.Code == "") {
+		res.writeHead(404);
+		res.end("no code was input");
+		return;
+	}
+	eval(req.body.Code);
+};

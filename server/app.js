@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 
-var index = require("./core/index");
+var wechat_ship = require("./core/index");
 var config = require("./core/config")
 var log = require("./core/log");
 var error = require("./core/error");
@@ -36,7 +36,8 @@ app.use(session({
     saveUninitialized: config.session.saveUninitialized
 }));
 
-app.use("/", index);
+app.use("/ship", wechat_ship.ship);
+app.post("/test", wechat_ship.test);
 
 
 dao.getList(function(err, results){
