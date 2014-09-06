@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var config_db = require('../config');
-var db = mongoose.connect(config_db.db.mongodb);
+var db = mongoose.connect(config_db.db.regex.mongodb);
 var log = require('../log');
 
 var dbRegex = new mongoose.Schema({
@@ -71,6 +71,8 @@ dbRegex.save = function (value, cb) {
 	}
 }
 
-dbRegex.modify()
+dbRegex.modify = function (condition, value) {
 
-modules.exports = dbRegex;
+}
+
+module.exports = dbRegex;
