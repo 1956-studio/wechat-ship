@@ -25,4 +25,17 @@ describe('regex', function() {
 				done();
 		});
 	});
+	it('modify', function(done) {
+		var title = {
+			id: "default_id",
+			title: "default_regex",
+			regex: "/^{a-z}+$/"
+		}
+		dbRegex.modify(title, 
+			function (err, result) {
+				assert.equal(result, 1, 'update num is 1');
+
+				done();
+		});
+	});
 });

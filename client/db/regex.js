@@ -71,7 +71,35 @@ dbRegex.save = function (value, cb) {
 	}
 }
 
-dbRegex.modify = function (condition, value) {
+/**
+@param regex is a regex object, regex.id is the condition and title.OTHER_OPTIONS will
+be update
+@param cb is a callback function
+*/
+// TODO is or not first find the value ?
+dbRegex.modify = function (title, cb) {
+	if (title) {
+		var tmp = {};
+		var condition = title.id,
+			update = function (title) {
+				if (title.title) {
+					tmp.title = title;
+				}
+				if (title.regex) {
+					tmp.regex = regex;
+				}
+				if (title.code) {
+					tmp.code = code;
+				}
+
+				return {$set: tmp}
+			},
+			options = {multi: true};
+
+		model.update(condition, update, options, cb);
+	} else {
+		cb(null);
+	}
 
 }
 
