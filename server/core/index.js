@@ -9,7 +9,7 @@ var api = require("./api");
 var mysqlapi = require("./mysqlapi");
 
 
-module.exports.ship = wechat("keyboardcat123").text(function (info, req, res) {console.log(info);
+module.exports.ship = wechat("keyboardcat123").text(function (info, req, res) {
 	dao.matchContent(info.Content, function(err, result) {
 		if(err) {
 			res.reply(err);
