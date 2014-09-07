@@ -8,17 +8,27 @@ var list = require("./list");
 var config = require("./config");
 var server = require("./server");
 var test = require("./test");
+var auth = require("../auth");
 
-router.get('/', function(req, res) {
-	if(req.session.user){
-		res.render("index", {user:req.session.user});
-	}else{
-		res.redirect("login");
+router.get('/', auth.Auth, function(req, res) {
+	var m_result = {
+		titile: "index"
 	}
- 	// res.render('index', { title: 'Main' });
+	process.nextTick(function () {
+		req.getUser(function (err, result) {
+			if(err) {
+				res.redirect("login");
+			}else {
+				m_result.user = {
+					username: result.username
+				}
+				res.render("index", m_result);
+			}
+		});
+	});
 });
 
-router.get('/login', function(req, res){
+router.get('/login', function(req, res) {
 	if(req.session.user){
 		res.redirect('/');
 	}else{
@@ -26,55 +36,61 @@ router.get('/login', function(req, res){
 	}
 });
 
-router.post('/login', function(req, res){
-	if(userControllers.login({username:req.body.username, password:req.body.password})){
-		req.session.user = {username:req.body.username, password:req.body.password};
-		res.redirect('/');
-	}else{
-		res.render("login", {error:"帐号或密码错误"});
-	}
-	
+router.post('/login', function(req, res) {
+	req.login(req.body.username, req.body.password, function (err) {
+		if (err){
+			res.redirect('/login');
+		}else {
+			res.redirect('/')
+		}
+	})
 });
 
-router.all('/logout', function(req, res){
-	req.session.user = null;
-	res.redirect('login');
+router.all('/logout', function(req, res) {
+	req.logout(function (err) {
+		if(err){
+			// Impossible
+			res.writeHead(404);
+			res.end();
+		}else {
+			res.redirect('/login');
+		}
+	});
 });
 
-router.get("/logs", logs.list);
-router.get("/logs/:page", logs.list);
+router.get("/logs", auth.Auth, logs.list);
+router.get("/logs/:page", auth.Auth, logs.list);
 
-router.get("/regex", regex.list);
-router.get("/regex/detail/:id", regex.detail);
-router.all("/regex/add", regex.add);
-router.get("/regex/list", regex.list);
-router.get("/regex/list/:page", regex.list);
-router.post("/regex/update/", regex.update);
+router.get("/regex", auth.Auth, regex.list);
+router.get("/regex/detail/:id", auth.Auth, regex.detail);
+router.all("/regex/add", auth.Auth, regex.add);
+router.get("/regex/list", auth.Auth, regex.list);
+router.get("/regex/list/:page", auth.Auth, regex.list);
+router.post("/regex/update/", auth.Auth, regex.update);
 
-router.get("/list", list.list);
-router.get("/list/list", list.list);
-router.get("/list/list/:page", list.list);
-router.get("/list/detail/:id", list.detail);
-router.post("/list/addlist", list.addList);
-router.get("/list/:listid/view/", list.viewsDetail);
-router.get("/list/:listid/view/:viewid", list.viewsDetail);
-router.post("/list/:listid/view/save", list.viewSave);
-router.post("/list/:listid/view/save/:viewid", list.viewSave);
+router.get("/list", auth.Auth, list.list);
+router.get("/list/list", auth.Auth, list.list);
+router.get("/list/list/:page", auth.Auth, list.list);
+router.get("/list/detail/:id", auth.Auth, list.detail);
+router.post("/list/addlist", auth.Auth, list.addList);
+router.get("/list/:listid/view/", auth.Auth, list.viewsDetail);
+router.get("/list/:listid/view/:viewid", auth.Auth, list.viewsDetail);
+router.post("/list/:listid/view/save", auth.Auth, list.viewSave);
+router.post("/list/:listid/view/save/:viewid", auth.Auth, list.viewSave);
 
-router.get("/config", config.getApp);
-router.get("/config/app", config.getApp);
-router.get("/config/db", config.getDb);
-router.get("/config/log", config.getLog);
+router.get("/config", auth.Auth, config.getApp);
+router.get("/config/app", auth.Auth, config.getApp);
+router.get("/config/db", auth.Auth, config.getDb);
+router.get("/config/log", auth.Auth, config.getLog);
 
-router.get("/server", server.listStatus);
-router.all("/server/startup", server.startup);
-router.get("/server/liststatus", server.listStatus);
-router.get("/server/stop", server.stop);
-router.get("/server/restart", server.restart);
+router.get("/server", auth.Auth, server.listStatus);
+router.all("/server/startup", auth.Auth, server.startup);
+router.get("/server/liststatus", auth.Auth, server.listStatus);
+router.get("/server/stop", auth.Auth, server.stop);
+router.get("/server/restart", auth.Auth, server.restart);
 
-router.get("/test", test.index);
-router.post("/test", test.exec);
+router.get("/test", auth.Auth, test.index);
+router.post("/test", auth.Auth, test.exec);
 
-router.get("/");
 
 module.exports = router;

@@ -21,7 +21,7 @@ test.exec = function (req, res) {
 			}
 		}, 
 		function (err, r, body) {
-			res.render("test/index", {result: body});
+			res.end(body);
 	});
 }
 
