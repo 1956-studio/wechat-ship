@@ -8,18 +8,20 @@ var list = require("./list");
 var config = require("./config");
 var server = require("./server");
 var test = require("./test");
+var user = require("./user")
 var auth = require("../auth");
 
 router.get('/', auth.Auth, function(req, res) {
 	var m_result = {
 		titile: "index"
 	}
-	process.nextTick(function () {
+	process.nextTick(function () {	//for more effective
 		req.getUser(function (err, result) {
 			if(err) {
 				res.redirect("login");
 			}else {
 				m_result.user = {
+					id: result.id,
 					username: result.username
 				}
 				res.render("index", m_result);
@@ -29,7 +31,7 @@ router.get('/', auth.Auth, function(req, res) {
 });
 
 router.get('/login', function(req, res) {
-	if(req.session.user){
+	if(req.isAuth) {
 		res.redirect('/');
 	}else{
 		res.render("login");
@@ -46,7 +48,7 @@ router.post('/login', function(req, res) {
 	})
 });
 
-router.all('/logout', function(req, res) {
+router.get('/logout', function(req, res) {
 	req.logout(function (err) {
 		if(err){
 			// Impossible
@@ -57,6 +59,8 @@ router.all('/logout', function(req, res) {
 		}
 	});
 });
+
+router.post("/user/:id", user.update);
 
 router.get("/logs", auth.Auth, logs.list);
 router.get("/logs/:page", auth.Auth, logs.list);

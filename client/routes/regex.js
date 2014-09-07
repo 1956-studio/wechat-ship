@@ -12,7 +12,8 @@ regex.list = function (req, res) {
 
 	regexControllers.getList(page, function (err, results) {
 		if(err){
-			res.render("regex/index", {});
+			res.writeHead(404);
+			res.end();
 		}else{
 			results.title = "regex"
 			res.render("regex/index", results);
@@ -23,8 +24,9 @@ regex.list = function (req, res) {
 // GET /regex/detail/:id
 regex.detail = function(req, res) {
 	regexControllers.getObject(req.params.id, function (err, result) {
-		if(err) {
-			res.redirect("/regex/list");
+		if(err || result == null) {
+			res.writeHead(404);
+			res.end();
 		}else {
 			result.title = "regex - detail";
 			res.render("regex/detail", result);
@@ -38,6 +40,11 @@ regex.add = function(req, res) {
 		res.render("regex/add");
 	}else if(req.method == "POST"){
 		regexControllers.addObject(req.body, function (err, id) {
+			if(err) {
+				res.writeHead(404);
+				res.end();
+				return;
+			}
 			res.redirect("/regex/detail/" + id);
 		});
 	}
@@ -46,6 +53,10 @@ regex.add = function(req, res) {
 // POST: /regex/update/
 regex.update = function (req, res) {
 	regexControllers.updateObject(req.body, function (err) {
+		if(err) {
+			res.writeHead(404);
+			res.end();
+		}
 		res.redirect("/regex/detail/" + req.body.id);
 	});
 }

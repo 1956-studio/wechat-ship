@@ -21,6 +21,11 @@ test.exec = function (req, res) {
 			}
 		}, 
 		function (err, r, body) {
+			if(err) {
+				res.writeHead(404);
+				res.end();
+				return;
+			}
 			res.end(body);
 	});
 }

@@ -25,7 +25,13 @@ server.startup = function (req, res) {
 // GET: /server/liststatus
 server.listStatus = function (req, res) {
 	serverController.list(function(err, result){
+		if(err) {
+			res.writeHead(404);
+			res.end();
+			return;
+		}
 		var m_result = {
+			title: "server list",
 			result:result
 		}
 		res.render("server/listStatus", m_result);

@@ -94,10 +94,10 @@
 				});
 				NProgress.done();
 			},
-			error: function (error) {
+			error: function (error, a) {
 				console.log(error);
 				$.growl({
-					title: '\tEXECUTE ERROR',
+					title: error.responseText || '\tEXECUTE ERROR',
 					icon: "glyphicon glyphicon-remove",					
 				}, {
 					type: 'danger',
@@ -112,8 +112,7 @@
 </head>
 <body>
 
-   
-welcome: {{user.username}}
+<a href="#" onclick="$('#UserModal').modal('show')">welcome: {{user.username}}</a>
 
 <a href="/logout">logout</a>
 
@@ -126,6 +125,32 @@ welcome: {{user.username}}
 </ul>
 
 <div id='body'> </div>
+
+<!-- Modal -->
+<div class="modal" id="UserModal" tabindex="-1" role="dialog" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;
+        </span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Change password</h4>
+      </div>
+      <div class="modal-body">
+       <!--form begin-->
+       <form id="user_form" action="/user/{{user.id}}" method="post" >
+       		input password: <input type="text" name="password" /><br>
+       		once more password: <input type="text" name="password2" />
+       </form>
+       <!--form end -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" 
+        onclick="$('#UserModal').modal('hide'); subform('user_form'); ">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>

@@ -45,7 +45,7 @@ api.post = function(url, data, ifbuff, cb) {
 			};
 			request(options, function(err, res, body){
 				if(err) {
-					log.toolslog("error", util.format("at api.post: request url:%s, data: %j, error:%s", 
+					log.apilog("error", util.format("at api.post: request url:%s, data: %j, error:%s", 
 						url, data, err));
 					callback(error.get("syserr", null));
 				}else{
@@ -60,7 +60,7 @@ api.post = function(url, data, ifbuff, cb) {
 		], function(err, result){
 			if(err == 1) {	//buffer hit, get from first callback
 				cb(null, result[0]);
-			}else{	//buffer not hit, get from second callback
+			}else{	//buffer not hit, get from second callback; or some err occur
 				cb(err, result[1]);
 			}
 	});
