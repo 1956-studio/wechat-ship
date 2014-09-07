@@ -60,7 +60,7 @@ router.get('/logout', function(req, res) {
 	});
 });
 
-router.post("/user/:id", user.update);
+router.post("/user/:id", auth.Auth, user.update);
 
 router.get("/logs", auth.Auth, logs.list);
 router.get("/logs/:page", auth.Auth, logs.list);
