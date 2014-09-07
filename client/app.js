@@ -9,6 +9,8 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var log = require('./log');
 var config = require("./config");
+var userControllers = require('./controllers/user');
+var auth = require('./auth')
 
 var app = express();
 
@@ -32,11 +34,31 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(session({secret: 'keyboard cat'}))
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', routes);
+// app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/static', express.static(__dirname + '/public'));
+
+//config of login auth
+app.use(auth.passport());
+
+auth.serial = function (username, password, done) {
+	userControllers.login(username, password, function (err, res) {
+		process.nextTick(function () {
+			done(err, res);
+		});
+	});
+}
+
+auth.deserial = function (user, done) {
+	done(null, user);
+}
+
+auth.noLogin = function (req, res, next) {
+	res.redirect('/login');
+}
+//config finish
+
+app.use('/', routes);
 
 // app.enable('view cache');
 
