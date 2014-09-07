@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var config_db = require('../config');
-var db = mongoose.connect(config_db.db.regex.mongodb);
+var db = mongoose.connect(config.db.mongodb);
 var log = require('../log');
 
 var dbRegex = new mongoose.Schema({
@@ -77,23 +77,10 @@ be update
 @param cb is a callback function
 */
 // TODO is or not first find the value ?
-dbRegex.modify = function (title, cb) {
-	if (title) {
-		var tmp = {};
-		var condition = title.id,
-			update = function (title) {
-				if (title.title) {
-					tmp.title = title;
-				}
-				if (title.regex) {
-					tmp.regex = regex;
-				}
-				if (title.code) {
-					tmp.code = code;
-				}
-
-				return {$set: tmp}
-			},
+dbRegex.modify = function (regex, cb) {
+	if (regex) {
+		var condition = {"id": regex.id},
+			update = {$set: regex},
 			options = {multi: true};
 
 		model.update(condition, update, options, cb);

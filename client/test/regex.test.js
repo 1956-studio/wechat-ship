@@ -26,14 +26,15 @@ describe('regex', function() {
 		});
 	});
 	it('modify', function(done) {
-		var title = {
+		var regex = {
 			id: "default_id",
 			title: "default_regex",
-			regex: "/^{a-z}+$/"
+			regex: "/^{a-zA-Z}+$/"
 		}
-		dbRegex.modify(title, 
+
+		dbRegex.modify(regex, 
 			function (err, result) {
-				assert.equal(result, 1, 'update num is 1');
+				assert.equal(result, 4, 'update num is 4');
 
 				done();
 		});
