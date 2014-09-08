@@ -35,6 +35,7 @@ regexControllers.getObject = function (id, cb) {
 	// 	regex: "我是正则表达式...",
 	// 	code: "console.log('hello');"
 	// });
+
 	var condition = {"id": id};
 
 	db.read(condition, cb);

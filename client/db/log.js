@@ -62,9 +62,11 @@ dbLog.getResult = function (num, message, times, cb) {
 		condition.endDate = times[1];
 	}
 
-	var page = new page(num);
+	console.log(page.constract);
 
-	var start = (page.num - 1) * page.pageSize;
+	var constract = new page.constract(num);
+
+	var start = (constract.num - 1) * constract.pageSize;
 
 	var cond = {
 		message: condition.message, 
