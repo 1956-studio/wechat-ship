@@ -1,8 +1,6 @@
 var config = require('../config');
 
-var pager = {};
-
-pager = function (num) {
+var pager = function (num) {
 	this.total = 0;
 	this.pageSize = config.page.size;
 	this.totalCount = 0;
