@@ -1,3 +1,4 @@
+var db = require('../db/log');
 
 logsControllers = {};
 
@@ -12,7 +13,7 @@ logsControllers.getList = function(page, message, times, cb){
 uccess at port: 80", "timestamp" : ISODate("2014-08-18T07:37:59.205Z"), "level"
 : "info", "meta" : {  } }
 	*/
-
+	/*
 	var begTime = times[0];
 	var endTime = times[1];
 	//TODO: with db
@@ -30,14 +31,17 @@ uccess at port: 80", "timestamp" : ISODate("2014-08-18T07:37:59.205Z"), "level"
 				message:"wechatttt",
 				timestamp:new Date()
 			}
-		],
-		page:{
-			current: 1,	/*当前页数：第current页*/
-			size: 10,	/*每页条数*/
-			count: 1000,	/*总条数： 共count条*/
-			total: 100	/*总页数: 共total页*/
-		}
-	});
+		],*/
+	// 	page:{
+	// 		current: 1,	/*当前页数：第current页*/
+	// 		size: 10,	/*每页条数*/
+	// 		count: 1000,	/*总条数： 共count条*/
+	// 		total: 100	/*总页数: 共total页*/
+	// 	}
+	// });
+	db.log(page.num, message, times, cb);
+	
+	
 }
 
 
