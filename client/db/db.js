@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var config_db = require('../config');
-var db = mongoose.connect(config_db.db.mongodb);
+var db = mongoose.connect(config.db.mongodb);
 var log = require('../log');
 
 var mongoTemplate = {};

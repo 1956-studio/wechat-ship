@@ -1,4 +1,6 @@
 
+var db = require('../db/regex');
+
 regexControllers = {};
 
 // cb(err, res)
@@ -27,12 +29,16 @@ regexControllers.getList = function (page, cb) {
 // cb(err, res)
 regexControllers.getObject = function (id, cb) {
 	//TODO: with db
-	cb(null, {
-		id: 123,
-		title: "匹配1啊匹配1",
-		regex: "我是正则表达式...",
-		code: "console.log('hello');"
-	});
+	// cb(null, {
+	// 	id: 123,
+	// 	title: "匹配1啊匹配1",
+	// 	regex: "我是正则表达式...",
+	// 	code: "console.log('hello');"
+	// });
+	var condition = {"id": id};
+
+	db.read(condition, cb);
+	
 }
 
 // cb(err, id)
@@ -41,7 +47,9 @@ regexControllers.addObject = function (regex, cb) {
 	/*
 	regex: title, regex, code
 	*/
-	cb(null, 11);
+	// cb(null, 11);
+
+	db.save(regex, cb);
 }
 
 // cb(err)
@@ -49,7 +57,9 @@ regexControllers.updateObject = function (regex, cb) {
 	/*
 	regex:id title, regex, code
 	*/
-	cb(null);
+	// cb(null);
+
+	db.modify(regex, cb);
 }
 
 module.exports = regexControllers;

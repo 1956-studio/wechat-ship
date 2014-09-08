@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var config = require('../config');
 var page = require('./pager');
 
-var db = mongoose.connect(config.db.log.mongodb);
+var db = mongoose.connect(config.db.mongodb);
 
 var dbLog = {};
 
