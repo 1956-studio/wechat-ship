@@ -50,30 +50,22 @@ dbLog.getResult = function (num, message, times, cb) {
 	var condition = {};
 
 	if (message.length === 0 || message) {
-		
+
 	} else {
 		condition.message = message;
 	}
 
-	if (times.length != 2 || times) {
+	if (times.length == 2 && times) {
+		condition.timestamp = {$gt: times[0].toString(), $lt: times[1].toString()};
 		
-	} else {
-		condition.startDate = times[0];
-		condition.endDate = times[1];
+		console.log(condition);
 	}
-
-	console.log(page.constract);
 
 	var constract = new page.constract(num);
 
 	var start = (constract.num - 1) * constract.pageSize;
 
-	var cond = {
-		message: condition.message, 
-		timestamp: {$gt: condition.startDate, $lt: condition.endDate}
-	}
-
-	model.find(cond).skip(start).limit(page.pageSize).exec(function (err, result) {
+	model.find(condition).skip(start).limit(page.pageSize).exec(function (err, result) {
 		if (err) {
 			// TODO error cb
 			cb(null);
