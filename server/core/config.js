@@ -40,7 +40,7 @@ config.log = {
 	console_level: "info",
 	mongo_opt:{
 		level:"info",
-		dbUri:"mongodb://localhost/wechatlog",
+		dbUri:"mongodb://localhost/ship",
 		errorTimeout:5000,
 		timeout:5000,
 	},

@@ -60,7 +60,7 @@ dao.getList(function(err, results){
 })
 
 var server = app.listen(app.get('port'), function() {
-  log.applog("info", "wechat-ship start success at port: " + app.get('port'));
+  log.userlog("info", "wechat-ship start success at port: " + app.get('port'));
 });
 
 module.exports = app;

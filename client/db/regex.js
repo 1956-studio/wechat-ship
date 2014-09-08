@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
-var config_db = require('../config');
-var db = mongoose.connect(config.db.mongodb);
+// var config_db = require('../config');
+// var db = mongoose.connect(config.db.mongodb);
 var log = require('../log');
 
 var dbRegex = new mongoose.Schema({

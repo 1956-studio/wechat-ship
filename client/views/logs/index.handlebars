@@ -1,7 +1,7 @@
 <h2>logs</h2>
 
 <h5>search</h5>
-<form id="searchform" action="/logs/1" method="get">
+<form id="searchform" action="/logs" method="get">
 	关键字<input name="message" type="text" /> 时间<input type="text" name="begtime" /> - <input type="text" name="endtime" />
 	<input type="button" value="查询" onclick="subform('searchform')" />
 </form>
@@ -13,7 +13,7 @@
 		</th>
 		{{#list logs}}
 		<tr>
-			<td>{{{level}}}</td><td>2014-01-01 10:10:10</td><td>{{{message}}}</td>
+			<td>{{{level}}}</td><td>{{{time}}}</td><td>{{{message}}}</td>
 		</tr>
 		{{/list}}
 	</table>

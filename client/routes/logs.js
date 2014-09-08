@@ -3,15 +3,21 @@ var logs = {};
 
 var logsControllers = require("../controllers/logs.js");
 
+// GET: /logs/
+// GET: /logs/:page
 logs.list = function(req, res) {
 	var page = parseInt(req.params.page);
 	logsControllers.getList(page, req.query.message, [req.query.begtime, req.query.endtime],
 		function(err, results) {
 			if(err){
-				res.render("logs/index", {});
+				res.writeHead(404);
+				res.end();
 			}else{
-				results.title = "logs"
-				res.render("logs/index", results);
+				var m_results = {
+					title: "logs",
+					logs: results
+				}
+				res.render("logs/index", m_results);
 			}
 		}
 	);

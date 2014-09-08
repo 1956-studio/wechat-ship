@@ -1,12 +1,12 @@
 var config = require('../config');
 
-var page = {};
+var pager = {};
 
-page.constract = function (num) {
+pager = function (num) {
 	this.total = 0;
 	this.pageSize = config.page.size;
 	this.totalCount = 0;
 	this.num = num;
 }
 
-module.exports = page;
+module.exports = pager;

@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var config = require('../config');
 var page = require('./pager');
 
-var db = mongoose.connect(config.db.mongodb);
+// var db = mongoose.connect(config.db.mongodb);
 
 var dbLog = {};
 
@@ -49,23 +49,17 @@ dbLog.getResult = function (num, message, times, cb) {
 
 	var condition = {};
 
-	if (message.length === 0 || message) {
-
-	} else {
+	if (message && message.length != 0) {
 		condition.message = message;
 	}
-
-	if (times.length == 2 && times) {
-		condition.timestamp = {$gt: times[0].toString(), $lt: times[1].toString()};
-		
-		console.log(condition);
+	if (times && times.length == 2 && times[0] && times[1]) {
+		condition.timestamp = {$gte: times[0], $lte: times[1]};
 	}
 
-	var constract = new page.constract(num);
-
-	var start = (constract.num - 1) * constract.pageSize;
-
-	model.find(condition).skip(start).limit(page.pageSize).exec(function (err, result) {
+	var p = new page(num);
+	
+	var start = (p.num - 1) * p.pageSize;
+	model.find(condition).skip(start).limit(p.pageSize).exec(function (err, result) {
 		if (err) {
 			// TODO error cb
 			cb(null);

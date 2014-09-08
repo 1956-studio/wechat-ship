@@ -10,7 +10,8 @@ var routes = require('./routes/index');
 var log = require('./log');
 var config = require("./config");
 var userControllers = require('./controllers/user');
-var auth = require('./auth')
+var auth = require('./auth');
+var db = require('./db');
 
 var app = express();
 
@@ -20,8 +21,10 @@ app.engine('handlebars', exphbs({
 	helpers: {
 		list:function (context, options) {
 			var ret = "";
-			for(var i=0, j=context.length; i<j; i++) {
-			    ret = ret + options.fn(context[i]);
+			if(context) {
+				for(var i=0, j=context.length; i<j; i++) {
+				    ret = ret + options.fn(context[i]);
+				}
 			}
 			return ret;
 		}
