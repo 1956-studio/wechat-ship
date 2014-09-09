@@ -28,6 +28,7 @@ config.redis = {
 	port: "6379",
 	pass: "",
 	bufferDB: 2,
+	expireTime: 30    // 30 seconds
 };
 
 config.session = {

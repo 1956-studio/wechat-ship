@@ -17,6 +17,7 @@ buffer.set = function(key, val) {
 		if (err || res != "OK") {
 			log.bufferlog("buffer set error: " + err + " result:" + res);
 		}
+		client.expire(key, config.redis.expireTime);
 	});
 }
 
