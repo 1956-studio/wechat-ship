@@ -7,6 +7,7 @@ var log = require("./log");
 var error = require("./error");
 var tools = require("./tools");
 var buffer = require("./buffer");
+var user = require("./user")
 
 var api = {};
 
@@ -138,5 +139,26 @@ api.writelog = function(level, str) {
 	log.userlog(level, str);
 }
 
+// wechat user
+api.addUser = function (info, userid, cb) {
+	// body...
+	var user = {
+		openid: info.FromUserName,
+		userid: userid
+	}
+	user.addUser(user, cb);
+}
+
+api.delUser = function (info, cb) {
+	user.delUser(info.FromUserName, cb);
+}
+
+api.updateUser = function (info, userid, cb) {
+	user.updateUser(info.FromUserName, {userid: userid}, cb);
+}
+
+api.findUser = function (info, cb) {
+	user.findUser(info.FromUserName, cb);
+}
 
 module.exports = api;

@@ -57,10 +57,10 @@ dao.getList(function(err, results){
 		List.add(results[i].key, results[i].items);
 
 	};
-})
+});
 
 var server = app.listen(app.get('port'), function() {
-  log.userlog("info", "wechat-ship start success at port: " + app.get('port'));
+  log.applog("info", "wechat-ship start success at port: " + app.get('port'));
 });
 
 module.exports = app;

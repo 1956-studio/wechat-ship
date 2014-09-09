@@ -19,7 +19,7 @@ dao.matchContent = function(content, cb) {
 		return;
 	}
 	//find all commands
-	db.findCommands(function(err, results) {
+	db.findRegex(function(err, results) {
 		if(err) {
 			log.dblog("error", err);
 			cb(error.get("syserr"), null);
