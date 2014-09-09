@@ -5,19 +5,8 @@ var config = require('./config');
 var log = {};
 
 log.init = function() {
-	var transports = new Array();
-	//general: for debug use
-	if(config.log.console) {
-		transports.push(new (winston.transports.Console)({ 
-			level: config.log.console_level 
-		}) );
-	}
-	else{
-		logger = null;
-	}
-	logger = new (winston.Logger)({transports: transports});
 
-	//category
+	// category
 	winston.loggers.add("db", config.log.db);
 	winston.loggers.add("dao", config.log.dao);
 	winston.loggers.add("app", config.log.app);

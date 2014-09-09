@@ -2,6 +2,9 @@ var express = require('express');
 
 var configControllers = require("../controllers/config.js");
 
+/*
+This is server's config.
+*/
 config = {};
 
 config.getApp = function (req, res) {
