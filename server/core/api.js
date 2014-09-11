@@ -1,6 +1,7 @@
 var request = require("request");
 var util = require("util");
 var async = require("async");
+var md5 = require("md5");
 
 var config = require("./config");
 var log = require("./log");
@@ -11,16 +12,35 @@ var user = require("./user")
 
 var api = {};
 
+
+// url: http://222.26.224.56/path
+// return path/md5(datastr)
+function hashData (url, datastr) {
+	url = url.toLowerCase().substr(7);
+	var indexS = url.indexOf("/");
+	if(indexS == -1 || url.substr(indexS + 1) == "" ) {	// url is like http://127.0.0.1 or http://127.0.0.1/
+		url = "host";
+	}else {
+		url = url.substr(indexS + 1);
+	}
+	console.log(url);	
+	return url+ "/" + md5.digest_s(datastr);
+}
+
 //url:http://127.0.0.1/path
 //data: an object
 //ifbuff: whether buffer the post
 //cb(err, result)
 api.post = function(url, data, ifbuff, cb) {
 	var datastr = tools.objToString(data);
+	var hashstr;
+	if(ifbuff) {
+		hashstr = hashData(url, datastr);
+	}
 	async.series([
 		function(callback) {
 			if(ifbuff){
-				buffer.get(url + datastr, function(err, res_get){
+				buffer.get(hashstr, function(err, res_get){
 					if(err){
 						callback(err, null);
 						return;
@@ -52,7 +72,7 @@ api.post = function(url, data, ifbuff, cb) {
 				}else{
 					//set buffer
 					if(ifbuff){
-						buffer.set(url + datastr, body);
+						buffer.set(hashstr, body);
 					}
 					callback(null, tools.stringToObj(body));
 				}

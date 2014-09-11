@@ -26,7 +26,8 @@
     "should":"*",
     "express-handlebars":"*",
     "mysql":"*",
-    "forever":"*"
+    "forever":"*",
+    "md5":"*"
   },
   "engines": {
     "node": ">= 0.8.0"

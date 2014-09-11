@@ -39,16 +39,15 @@ describe('api: post', function() {
 		});
 	});
 	it("post request with buffer(been buffered)", function(done){
-		api.post("http://127.0.0.1", "hello", true, function(err, res){
+		api.post("http://127.0.0.1/path/a", "hello", true, function(err, res){
 			res.should.eql({key:'value'});
 			occur.should.eql(2);	//should not view server
 			done();
 		});
 	});
 	it("post request with buffer(been buffered) and arrive expire time", function(done){
-
 		setTimeout(function () {
-			api.post("http://127.0.0.1", "hello", true, function(err, res){
+			api.post("http://127.0.0.1/a", "hello", true, function(err, res){
 				res.should.eql({key:'value'});
 				occur.should.eql(3);
 				done();
