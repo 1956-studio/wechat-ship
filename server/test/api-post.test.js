@@ -4,6 +4,7 @@ var http = require("http");
 var buffer = require("../core/buffer");
 var api = require("../core/api");
 var config = require("../core/config");
+var assert = require('assert');
 
 describe('api: post', function() {
 	var data = "some string here";
@@ -18,6 +19,16 @@ describe('api: post', function() {
 			done();
 		});
 	});
+	it("buffer del", function (done) {
+		buffer.del("data", function (err) {
+			assert.equal(err, null, "err should be null");
+			buffer.get("data", function(err, res){
+				assert.equal(err, null, "err should be null");
+				assert.equal(res, null, "res should be null");
+				done();
+			});
+		})
+	})
 	// create test server
 	var occur = 0;
 	http.createServer(function(req, res){

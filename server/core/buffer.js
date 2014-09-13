@@ -32,4 +32,15 @@ buffer.get = function(key, cb) {
 	});
 }
 
+buffer.del = function (key) {
+	// client.del(key, function (err) {
+	// 	cb(err);
+	// });
+	client.del(key, function (err) {
+		if (err) {
+			log.bufferlog("buffer del error: " + err + " result:" + res);
+		}
+	});
+}
+
 module.exports = buffer;

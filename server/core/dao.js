@@ -66,7 +66,7 @@ dao.getList = function(cb) {
 
 
 /*
-what a fuck function, if not used it, item["val"] would not work!
+what a fuck function, if not used it, item["val"] would be undefined!
 */
 function setItems (item) {
 	var result = new Array(2);

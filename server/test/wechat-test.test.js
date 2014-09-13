@@ -1,5 +1,4 @@
 require("should");
-require("mocha");
 
 var request = require("request");
 

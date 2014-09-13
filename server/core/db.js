@@ -35,7 +35,6 @@ db.findList = function(cb) {
 
 // user
 db.addUser = function (user, cb) {
-
 	cb(null);
 }
 
