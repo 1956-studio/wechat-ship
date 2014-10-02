@@ -1,42 +1,57 @@
-var dbRegex = require('../db/regex.js');
+require('../db/index');
+var RegexSchema = require('../db/regex.js');
+var mongoose = require('mongoose');
 var assert = require('assert');
 var should = require('should');
 
-describe('regex', function() {
-	it('read', function(done) {
-		dbRegex.read({"title": "default_regex"}, 
-			function (err, result) {
-				result.should.have.property("title", "default_regex");
+var regexControllers = require('../controllers/regex')
 
-				done();
-		});
-	});
-	it('save', function(done) {
-		var value = {
-			id: "default_id",
+describe('#Regex db: ', function() {
+	it('Save should be success', function(done) {
+		var m = {
 			title: "default_regex",
 			regex: "/^\d+$/",
 			code: "console.log('default regex has been save')"
 		}
-		dbRegex.save(value, 
-			function (err, result) {
-				result.should.have.property("id", "default_id");
+		
+		regex = mongoose.model('regex');
+		entity = new regex(m);
+		entity.Save(done);
+		entity.id.should.be.a.String;
+	});
+});
 
-				done();
+
+describe.only('#Regex controller', function() {
+	before(function(done){
+		regexControllers.LoadRegexs(done);
+	})
+	var addid;
+	it('Add Regex should be success', function(done) {
+		regexControllers.addObject({
+			title: 'regex',
+			regex: "/^\d+$/",
+			code: "console.log('default regex has been save')"
+		}, function(err, id){
+			id.should.be.a.String;
+			addid = id;
+			done();
 		});
 	});
-	it('modify', function(done) {
-		var regex = {
-			id: "default_id",
-			title: "default_regex",
-			regex: "/^{a-zA-Z}+$/"
-		}
-
-		dbRegex.modify(regex, 
-			function (err, result) {
-				assert.equal(result, 4, 'update num is 4');
-
-				done();
-		});
+	var obj;
+	it('getObject should be success', function(done) {
+		regexControllers.getObject(addid, function(err, doc) {
+			doc.should.be.an.Object;
+			obj = doc;
+			done();
+		})
+	});
+	it('Update Regex should be success', function(done) {
+		obj.title = 'new regex';
+		regexControllers.updateObject(obj, done);
+		regexControllers.getObject(addid, function(err, doc) {
+			doc.title.should.be.eql('new regex')
+			done();
+		})
 	});
 });

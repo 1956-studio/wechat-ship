@@ -5,6 +5,8 @@ var regexControllers = require("../controllers/regex.js");
 
 var regex = {};
 
+regexControllers.LoadRegexs();
+
 // GET /regex
 // GET /regex/:page
 regex.list = function (req, res) {
@@ -15,8 +17,10 @@ regex.list = function (req, res) {
 			res.writeHead(404);
 			res.end();
 		}else{
-			results.title = "regex"
-			res.render("regex/index", results);
+			var ret_results = {}
+			ret_results.headTitle = "regex";
+			ret_results.regex = results;
+			res.render("regex/index", ret_results);
 		}
 	});
 }
@@ -28,7 +32,7 @@ regex.detail = function(req, res) {
 			res.writeHead(404);
 			res.end();
 		}else {
-			result.title = "regex - detail";
+			result.headTitle = "regex - detail";
 			res.render("regex/detail", result);
 		}
 	});
