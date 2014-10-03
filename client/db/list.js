@@ -31,7 +31,7 @@ ListSchema.methods.pushView = function (view, done) {
 			db.log('error', 'Push view: ' + err);
 		}
 		if(typeof done === 'function') {
-			done();
+			done(err);
 		}
 	});
 }
@@ -45,7 +45,23 @@ ListSchema.statics.updateView = function (listid, view, done) {
 			{},
 		function (err) {
 			if(err) {
-				db.log('error', 'List save: ' + err);
+				log.dblog('error', 'List save: ' + err);
+			}
+			if(typeof done === 'function') {
+				done(err);
+			}
+		});	
+}
+
+ListSchema.statics.deleteView = function (listid, viewid, done) {
+	this.update({'_id': listid}, 
+		{$pull:{
+				views: {'_id': viewid}
+			}},
+			{},
+		function (err) {
+			if(err) {
+				log.dblog('error', 'List save: ' + err);
 			}
 			if(typeof done === 'function') {
 				done(err);

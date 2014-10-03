@@ -11,7 +11,10 @@ var listid = '{{id}}';
 	<td>
 		{{#list views}}
 			<ul>
-			<li><a href="#" onclick="to('/list/'+listid+'/view/{{{id}}}')">{{{title}}}</a></li>
+			<li>
+				<a href="#" onclick="to('/list/'+listid+'/view/{{{id}}}')">{{{title}}}</a> 
+				<a href="#" onclick="to('/list/'+listid+'/view/{{{id}}}', 'DELETE')">delete</a>
+			</li>
 			</ul>
 		{{/list}}
 	</td>

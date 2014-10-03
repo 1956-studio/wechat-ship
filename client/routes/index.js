@@ -82,6 +82,8 @@ router.get("/list/:listid/view/", auth.Auth, list.viewsDetail);
 router.get("/list/:listid/view/:viewid", auth.Auth, list.viewsDetail);
 router.post("/list/:listid/view/save", auth.Auth, list.viewSave);
 router.post("/list/:listid/view/save/:viewid", auth.Auth, list.viewSave);
+router.delete("/list/:id", auth.Auth, list.delete);
+router.delete("/list/:listid/view/:viewid", auth.Auth, list.deleteView);
 
 router.get("/config", auth.Auth, config.getApp);
 router.get("/config/app", auth.Auth, config.getApp);

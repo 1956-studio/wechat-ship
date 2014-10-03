@@ -95,4 +95,34 @@ list.viewsDetail = function (req, res) {
 	});
 }
 
+// DELETE: /list/:id
+list.delete = function (req, res) {
+	listControllers.deleteList(req.params.id, function (err) {
+		if(err) {
+			res.writeHead(400);
+			res.end(err);
+		}else {
+			req.method = 'GET';
+			list.list(req, res);
+		}
+	})
+}
+
+// DELETE: /list/:listid/view/:viewid
+list.deleteView = function (req, res) {
+	var listid = req.params.listid;
+	var viewid = req.params.viewid;
+
+	listControllers.deleteView(listid, viewid, function (err) {
+		if(err) {
+			res.writeHead(400);
+			res.end(err);
+		}else {
+			req.method = 'GET';
+			req.params.id = listid;
+			list.detail(req, res);
+		}
+	});
+}
+
 module.exports = list;

@@ -161,4 +161,38 @@ listControllers.saveView = function (alist, cb) {
 		cb(null, null);
 	}
 }
+
+listControllers.deleteList = function (listid, cb) {
+	var index = getList(listid);
+	var list = lists[index];
+	if(!list) {
+		cb('list is null');
+		return;
+	}
+	if(list.views.length !== 0) {
+		cb('could not delete list that view is not null');
+		return;
+	}
+	list.remove(cb);
+	[].splice.call(lists, index, 1);
+}
+
+listControllers.deleteView = function (listid, viewid, cb) {
+	if(listid === undefined || !viewid === undefined) {
+		cb('params error');
+	}
+	var index = getList(listid);
+	var list = lists[index];
+	ListModel.deleteView(listid, viewid, cb);
+
+	// find the view
+	for(var i = 0; i < list.views.length; i++) {
+		console.log(viewid, list.views[i].id);
+		if(viewid === list.views[i].id) {
+			[].splice.call(list.views, i, 1);
+			return;
+		}
+	}
+}
+
 module.exports = listControllers;

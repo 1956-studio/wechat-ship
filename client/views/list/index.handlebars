@@ -10,14 +10,15 @@
 		<td>name</td><td>views</td>
 		{{#list list}}
 			<tr>
-			<td> <a href="#" onclick="to('/list/detail/{{{id}}}')"> {{{name}}} </td>
-			<td>
-				{{#list views}}
-					<ul>
-						<li>{{{title}}} </li>
-					</ul>
-				{{/list}}
-			</td>
+  			<td> <a href="#" onclick="to('/list/detail/{{{id}}}')"> {{{name}}} </td>
+  			<td>
+  				{{#list views}}
+  					<ul>
+  						<li>{{{title}}} </li>
+  					</ul>
+  				{{/list}}
+  			</td>
+        <td><a href='#' onclick='to("/list/{{{id}}}", "DELETE")'>delete</a></td>
 			</tr>
 		{{/list}}
 	</tr>
