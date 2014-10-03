@@ -17,7 +17,7 @@ regex.list = function (req, res) {
 			res.writeHead(404);
 			res.end();
 		}else{
-			var ret_results = {}
+			var ret_results = {};
 			ret_results.headTitle = "regex";
 			ret_results.regex = results;
 			res.render("regex/index", ret_results);
@@ -60,9 +60,23 @@ regex.update = function (req, res) {
 		if(err) {
 			res.writeHead(404);
 			res.end();
+			return;
 		}
 		res.redirect("/regex/detail/" + req.body.id);
 	});
 }
 
+// DELETE: /regex/{{id}}
+regex.delete = function (req, res) {
+	regexControllers.deleteObject(req.params.id, function (err) {
+		if(err) {
+			res.writeHead(404);
+			res.end();
+			return;
+		}
+		req.method = 'GET'
+		regex.list(req, res)
+	})
+	
+}
 module.exports = regex;

@@ -13,7 +13,7 @@ var auth = require("../auth");
 
 router.get('/', auth.Auth, function(req, res) {
 	var m_result = {
-		titile: "index"
+		headTitle: "index"
 	}
 	process.nextTick(function () {	//for more effective
 		req.getUser(function (err, result) {
@@ -71,6 +71,7 @@ router.all("/regex/add", auth.Auth, regex.add);
 router.get("/regex/list", auth.Auth, regex.list);
 router.get("/regex/list/:page", auth.Auth, regex.list);
 router.post("/regex/update/", auth.Auth, regex.update);
+router.delete("/regex/:id/", auth.Auth, regex.delete);
 
 router.get("/list", auth.Auth, list.list);
 router.get("/list/list", auth.Auth, list.list);

@@ -8,6 +8,7 @@
 		{{#list regex}}
 		<tr>
 			<td><a href="#" onclick="to('/regex/detail/{{{id}}}')">{{{title}}}</a></td><td>{{{regex}}}</td>
+			<td><a href="#" onclick="to('/regex/{{id}}', 'DELETE')">删除</a></td>
 		</tr>
 		{{/list}}
 	</table>

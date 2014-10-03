@@ -14,7 +14,7 @@ logs.list = function(req, res) {
 				res.end();
 			}else{
 				var m_results = {
-					title: "logs",
+					headTitle: "logs",
 					logs: results
 				}
 				res.render("logs/index", m_results);

@@ -31,7 +31,7 @@ server.listStatus = function (req, res) {
 			return;
 		}
 		var m_result = {
-			title: "server list",
+			headTitle: "server list",
 			result:result
 		}
 		res.render("server/listStatus", m_result);

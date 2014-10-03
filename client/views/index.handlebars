@@ -19,14 +19,16 @@
     <link rel="stylesheet" href="/static/plugin/codemirror/theme/monokai.css">
 
     <script>
-	function to(url){
+	function to(url, method){
+		method = method ? method : 'GET';
 		NProgress.start();
 		$.ajax({
 			url:url, 
-			success: function(data){
+			type: method,
+			success: function(data){NProgress.done();
 				$("#body").html("");
 				$("#body").html(data);
-				NProgress.done();
+				
 			},
 			error: function (error) {
 				console.log(error);

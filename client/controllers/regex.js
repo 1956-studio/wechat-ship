@@ -11,7 +11,7 @@ var regexs;
 function getRegex(id) {
 	for(var i = 0; i < regexs.length; i++) {
 		if(regexs[i].id === id) {
-			return regexs[i];
+			return i;
 		}
 	}
 	return null;
@@ -23,11 +23,10 @@ regexControllers.LoadRegexs = function(done) {
 			console.log("Load Regexs Error: " + err);
 		}else {
 			console.log("Load Regexs Finish!");
-			regexs = doc;
+			regexs = doc || {};
 			if(typeof done === 'function') {
 				done();
 			}
-			
 		}
 	});
 }
@@ -68,8 +67,8 @@ regexControllers.getObject = function (id, cb) {
 	// 	regex: "我是正则表达式...",
 	// 	code: "console.log('hello');"
 	// });
-
-	cb(null, getRegex(id));
+	var index = getRegex(id)
+	cb(null, regexs[index]);
 }
 
 // cb(err, id)
@@ -95,12 +94,23 @@ regexControllers.updateObject = function (regex, cb) {
 	/*
 	regex:id title, regex, code
 	*/
-	oldRegex = getRegex(regex.id);
+	var oldRegex = regexs[getRegex(regex.id)];
 	oldRegex.title = regex.title;
 	oldRegex.regex = regex.regex;
 	oldRegex.code = regex.code;
 
 	oldRegex.Save(cb);	
+}
+
+regexControllers.deleteObject = function (id, cb) {
+	var index = getRegex(id);
+	var delRegex = regexs[index];
+	if(delRegex) {
+		delRegex.remove(function () {
+			[].splice.call(regexs, index, 1);
+			cb();
+		});
+	}
 }
 
 module.exports = regexControllers;

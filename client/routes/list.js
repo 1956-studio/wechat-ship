@@ -5,6 +5,7 @@ var listControllers = require("../controllers/list.js");
 
 var list = {};
 
+listControllers.LoadLists();
 // GET: /list
 // GET: /list/list
 // GETl /list/list/:page
@@ -13,8 +14,12 @@ list.list = function (req, res) {
 		if(err){
 			res.render("list/index", {});
 		}else{
-			results.title = "list"
-			res.render("list/index", results);
+			var m_result = {
+				headTitle: 'list',
+				list: results
+			}
+			
+			res.render("list/index", m_result);
 		}
 	});
 }
@@ -25,7 +30,7 @@ list.detail = function(req, res) {
 		if(err) {
 			res.redirect("list/list");
 		}else {
-			result.title = "list-detail";
+			result.headTitle = "list-detail";
 			res.render("list/detail", result);
 		}
 	});
@@ -33,6 +38,7 @@ list.detail = function(req, res) {
 
 // POST: /list/addlist
 list.addList = function (req, res) {
+	console.log(req.body);
 	listControllers.addList(req.body, function (err, result) {
 		if(err) {
 			res.writeHead(400);
@@ -56,6 +62,7 @@ list.viewSave = function (req, res) {
 			res.end();
 		}else {
 			var m_result = {
+				headTitle: 'view detail',
 				id: req.params.listid,
 				view: result
 			}
@@ -70,7 +77,7 @@ list.viewsDetail = function (req, res) {
 	if(req.params.viewid == undefined){	//this is add view
 		var m_result = {};
 		m_result.id = req.params.listid;
-		m_result.title = "list views detail"
+		m_result.headTitle = "list views detail"
 		res.render("list/viewsDetail", m_result);
 		return;
 	}
@@ -80,7 +87,7 @@ list.viewsDetail = function (req, res) {
 			res.end();
 		}else {
 			var m_result = {};
-			m_result.title = "view detail2"
+			m_result.headTitle = "view detail"
 			m_result.view = result;
 			m_result.id = req.params.listid;
 			res.render("list/viewsDetail", m_result);
