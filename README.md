@@ -3,6 +3,7 @@ wechat-ship
 
 微信平台后台管理,快速搭建微信平台
 
+------------------
 ###api:
 
 常用操作：
@@ -62,8 +63,46 @@ api.wait(res, listName);
 api.nowait(res, text)
 ```
 
-------------
+微信用户（此用户和openid关联）
+用户结构体：
+```
+user:{
+	openid: String,
+	regTime: Date,
+	nickName: String,
+	info: Mixed // info为用户自定义信息，用户可以用它关联自己平台的相关账号信息
+}
 
+```
+
+ex:
+```
+api.addUser(info /*此info为系统自带变量，不是user.info*/, 
+	{}/*这里为user.info,可以为null*/, 
+	function(){});
+```
+
+api:
+```
+// 添加
+api.addUser(info, userInfo, cb);
+```
+
+```
+// 更新
+api.updateUser(info, userInfo, cb);
+```
+
+```
+// 删除
+api.delUser(info, cb);
+```
+
+```
+// 查询
+api.findUser(info, cb);
+```
+------------
 wechat-ship还支持使用mysql数据库存储数据。
 ###mysqlapi
 * 在config页面配置数据源
