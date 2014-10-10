@@ -54,8 +54,8 @@ dao.getList = function(cb) {
 			var items = new Array();
 			results[i].items = items;
 			
-			for(var j = 0; j < results[i].list.length; j++){
-				items.push(setItems(results[i].list[j]));
+			for(var j = 0; j < results[i].views.length; j++){
+				items.push(setItems(results[i].views[j]));
 			}
 			
 		}

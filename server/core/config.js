@@ -5,7 +5,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 config.wechat = {
-	default_reply: "系统默认回复"
+	default_reply: "系统默认回复",
+	token: "keyboardcat123"
 }
 
 config.mysql = [
@@ -35,7 +36,12 @@ config.session = {
 	secret: "aaa",
 	resave: true,
 	saveUninitialized:true,
-}
+};
+
+config.db = {
+	mongodb: 'mongodb://localhost/ship'
+};
+
 config.log = {
 	console: true,
 	console_level: "info",
