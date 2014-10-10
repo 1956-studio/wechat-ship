@@ -9,6 +9,7 @@ var error = require("./error");
 var tools = require("./tools");
 var buffer = require("./buffer");
 var user = require("./user");
+var db = require("./db");
 
 var api = {};
 
@@ -160,11 +161,11 @@ api.writelog = function(level, str) {
 }
 
 // wechat user
-api.addUser = function (info, userid, cb) {
+api.addUser = function (info, userinfo, cb) {
 	// body...
 	var user_info = {
 		openid: info.FromUserName,
-		userid: userid
+		info: useinfo
 	}
 	user.addUser(user_info, cb);
 }
@@ -173,8 +174,12 @@ api.delUser = function (info, cb) {
 	user.delUser(info.FromUserName, cb);
 }
 
-api.updateUser = function (info, userid, cb) {
-	user.updateUser(info.FromUserName, {userid: userid}, cb);
+api.updateUser = function (info, userInfo, cb) {
+	var user = {
+		openid: info.FromUserName,
+		info: userinfo
+	};
+	user.updateUser(user, cb);
 }
 
 api.findUser = function (info, cb) {

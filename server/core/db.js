@@ -17,17 +17,17 @@ mongoose.connect(config.db.mongodb);
 /******buffer********/
 var regex = null;
 var list = null;
-var user = null;
+// var user = null;	// I had done it in user.js! but I forget...TAT
 /******buffer********/
 
-UserModel.find({}, function (err, doc) {
-	if(err) {
-		console.log(err);
-		return cb(err);
-	}else {
-		user = doc;
-	}
-});
+// UserModel.find({}, function (err, doc) {
+// 	if(err) {
+// 		console.log(err);
+// 		return cb(err);
+// 	}else {
+// 		user = doc;
+// 	}
+// });
 
 // regex
 db.findRegex = function(cb) {
@@ -79,9 +79,6 @@ db.addUser = function (u, cb) {
 	UserModel.count({openid: u.openid}, function (err, count) {
 		if(!err && count == 0) {
 			UserModel.createUser(u, cb);
-			if(user) {
-				user.push(u);
-			}
 		}else {
 			cb(1);
 		}
@@ -89,30 +86,15 @@ db.addUser = function (u, cb) {
 }
 
 db.delUser = function (openid, cb) {
-	UserModel.remove({openid: openid}, function (err) {
-		if(err) {
-			return cb(err);
-		}
-	});
-	for(var i in user) {
-		if(user[i].openid === openid) {
-			[].splice.call(user, i, 1);
-			return cb();
-		}
-	}
+	UserModel.remove({openid: openid}, cb);
 }
 
-db.updateUser = function (userEntity, cb) {
-	UserModel.findOneAndUpdate({openid: userEntity.openid}, userEntity, cb);
+db.updateUser = function (userObj, cb) {
+	UserModel.findOneAndUpdate({openid: userObj.openid}, userObj, cb);
 }
 
 db.findUser = function (openid, cb) {
-	if(user != null) {
-		cb(null, _.findWhere(user, {openid: openid}));
-	}else {
-		console.log('error');
-		cb(1);
-	}
+	UserModel.findOne({openid: openid}, cb);
 }
 
 module.exports = db;

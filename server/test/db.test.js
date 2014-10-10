@@ -38,11 +38,16 @@ describe('#db test', function() {
 			done();
 		});
 	});
-	it('test user should be success', function(done) {
-		db.findUser('1111', function (err, doc1) {
-			var tmpdoc = doc1;
-			tmpdoc.nickname = 'miaomiao';
-			db.updateUser(tmpdoc, function (err) {
+	it('test update user should be success', function(done) {
+		db.findUser('1111', function (err, doc) {
+			var obj = {
+				openid: doc.openid,
+				info: {
+					spell: 'hello'
+				}
+			}
+			db.updateUser(obj, function (err) {
+				console.log(err);
 				(err == undefined).should.be.true;
 				done();
 			});
@@ -51,10 +56,7 @@ describe('#db test', function() {
 	it('test del user should be success', function(done) {
 		db.delUser('1111', function (err) {
 			(err == undefined).should.be.true;
-			db.findUser('1111', function (err, doc) {
-				(doc === undefined).should.be.true;
-				done();
-			});
+			done();
 		});
 	});
 });
