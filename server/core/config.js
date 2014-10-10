@@ -25,7 +25,7 @@ config.mysql = [
 ]
 
 config.redis = {
-	host: "222.26.224.56",
+	host: "222.26.224.50",
 	port: "6379",
 	pass: "",
 	bufferDB: 2,

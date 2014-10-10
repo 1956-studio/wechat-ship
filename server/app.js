@@ -36,6 +36,7 @@ app.use(session({
     saveUninitialized: config.session.saveUninitialized
 }));
 
+app.use(express.query());
 app.use("/ship", wechat_ship.ship);
 app.post("/test", wechat_ship.test);
 
@@ -54,8 +55,7 @@ dao.getList(function(err, results){
 	//   ['回复{c}查看我的性取向', '这样的事情怎么好意思告诉你啦- -']
 	// ]);
 	for (var i = 0; i < results.length; i++) {
-		List.add(results[i].key, results[i].items);
-
+		List.add(results[i].name, results[i].items);
 	};
 });
 

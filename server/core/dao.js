@@ -31,7 +31,7 @@ dao.matchContent = function(content, cb) {
 			return;
 		}
 		for(var i =0; i < results.length; i++) {
-			if(tools.matchKeyWords(results[i].keys, content, "|")){
+			if(tools.matchKeyWords(results[i].title, content, "|")){
 				cb(null, results[i]);
 				return;	//stop match
 			}
@@ -49,17 +49,13 @@ dao.getList = function(cb) {
 			cb(error.get("syserr"), null);
 			return;
 		}
-		
-		for(var i = 0; i < results.length; i++){
+		for(var i in results){
 			var items = new Array();
 			results[i].items = items;
-			
-			for(var j = 0; j < results[i].views.length; j++){
-				items.push(setItems(results[i].views[j]));
+			for(var j = 0; j < results[i].views.length; j++) {
+				items.push(getItems(results[i].views[j]));
 			}
-			
 		}
-		
 		cb(null, results);
 	});
 }
@@ -68,11 +64,11 @@ dao.getList = function(cb) {
 /*
 what a fuck function, if not used it, item["val"] would be undefined!
 */
-function setItems (item) {
+function getItems (item) {
 	var result = new Array(2);
-	result[0] = item["key"];
+	result[0] = item["title"];
 	result[1] = function (info, req, res) {
-		eval(item["val"]);
+		eval(item["code"]);
 	};
 	return result;
 }
