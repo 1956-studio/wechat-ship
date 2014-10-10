@@ -14,4 +14,47 @@ describe('#db test', function() {
 			done();
 		})
 	});
+	it('test createUser', function(done) {
+		db.addUser({
+			openid: '1111',
+			nickname: 'lisheep',
+			info: {
+				spell: 'mie~'
+			}
+		}, function (err) {
+			(err == undefined).should.be.true;
+			done();
+		});
+	});
+	it('test createUser should be error', function(done) {
+		db.addUser({
+			openid: '1111',
+			nickname: 'lisheep',
+			info: {
+				spell: 'mie~'
+			}
+		}, function (err) {
+			err.should.be.eql(1);
+			done();
+		});
+	});
+	it('test user should be success', function(done) {
+		db.findUser('1111', function (err, doc1) {
+			var tmpdoc = doc1;
+			tmpdoc.nickname = 'miaomiao';
+			db.updateUser(tmpdoc, function (err) {
+				(err == undefined).should.be.true;
+				done();
+			});
+		});
+	});
+	it('test del user should be success', function(done) {
+		db.delUser('1111', function (err) {
+			(err == undefined).should.be.true;
+			db.findUser('1111', function (err, doc) {
+				(doc === undefined).should.be.true;
+				done();
+			});
+		});
+	});
 });

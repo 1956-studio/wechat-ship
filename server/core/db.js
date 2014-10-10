@@ -1,22 +1,47 @@
 var mongoose = require('mongoose');
+var _ = require("underscore");
 
 var log = require('./log');
 var ListSchema = require('../dao/ListDao');
 var RegexSchema = require('../dao/RegexDao');
+var UserSchema = require('../dao/UserDao');
 
 var RegexModel = mongoose.model('regex');
 var ListModel = mongoose.model('list');
+var UserModel = mongoose.model('user');
 
 var db = {};
 
 mongoose.connect(config.db.mongodb);
+
+/******buffer********/
+var regex = null;
+var list = null;
+var user = null;
+/******buffer********/
+
+UserModel.find({}, function (err, doc) {
+	if(err) {
+		console.log(err);
+		return cb(err);
+	}else {
+		user = doc;
+	}
+});
 
 // regex
 db.findRegex = function(cb) {
 	// var results = new Array();
 	// results.push({keys:"aaa", cmd: "res.wait('view')"});
 	// results.push({keys:"ccc", cmd: "res.wait('view2')"});
-	return RegexModel.find({}, cb);
+	if(regex == null) {
+		RegexModel.find({}, function (err, doc) {
+			regex = doc;
+			cb(err, doc);
+		});
+	}else {
+		cb(null, regex);
+	}
 };
 
 // list
@@ -39,30 +64,55 @@ db.findList = function(cb) {
 	// results.push(result1);
 	// results.push(result2);
 	
-	return ListModel.find({}, cb);
+	if(list == null) {
+		ListModel.find({}, function (err, doc) {
+			list = doc;
+			cb(err, doc);
+		});
+	}else {
+		cb(null, list);
+	}
 };
 
 // user
-db.addUser = function (user, cb) {
-	cb(null);
+db.addUser = function (u, cb) {
+	UserModel.count({openid: u.openid}, function (err, count) {
+		if(!err && count == 0) {
+			UserModel.createUser(u, cb);
+			if(user) {
+				user.push(u);
+			}
+		}else {
+			cb(1);
+		}
+	});
 }
 
 db.delUser = function (openid, cb) {
-	cb(null);
+	UserModel.remove({openid: openid}, function (err) {
+		if(err) {
+			return cb(err);
+		}
+	});
+	for(var i in user) {
+		if(user[i].openid === openid) {
+			[].splice.call(user, i, 1);
+			return cb();
+		}
+	}
 }
 
-db.updateUser = function (user, cb) {
-	cb(null);
+db.updateUser = function (userEntity, cb) {
+	UserModel.findOneAndUpdate({openid: userEntity.openid}, userEntity, cb);
 }
 
 db.findUser = function (openid, cb) {
-	var user = {
-		id: "123",	// objectId
-		openid: "123",	// wechat openid
-		userid: "1018110223",	// user id, usually for other platform's id
-		regDate: new Date(),	// add user date (now)
+	if(user != null) {
+		cb(null, _.findWhere(user, {openid: openid}));
+	}else {
+		console.log('error');
+		cb(1);
 	}
-	cb(null, user);
 }
 
 module.exports = db;
