@@ -187,7 +187,6 @@ listControllers.deleteView = function (listid, viewid, cb) {
 
 	// find the view
 	for(var i = 0; i < list.views.length; i++) {
-		console.log(viewid, list.views[i].id);
 		if(viewid === list.views[i].id) {
 			[].splice.call(list.views, i, 1);
 			return;

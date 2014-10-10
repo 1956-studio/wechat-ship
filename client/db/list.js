@@ -69,4 +69,6 @@ ListSchema.statics.deleteView = function (listid, viewid, done) {
 		});	
 }
 
-var model = mongoose.model('list', ListSchema);
+mongoose.model('list', ListSchema);
+
+module.exports = ListSchema;
