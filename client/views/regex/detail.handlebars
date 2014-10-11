@@ -4,6 +4,10 @@
       theme: "monokai",
       mode: "javascript",
       autoCloseBrackets: true,
+      indentWithTabs: true,
+      smartIndent: true,
+      matchBrackets : true,
+      autoCloseBrackets: true,
       extraKeys: {
         "F11": function(cm) {
           cm.setOption("fullScreen", !cm.getOption("fullScreen"));
@@ -27,9 +31,7 @@
 	<tr>
 		<td>code</td>
 		<td> 
-			<textarea id="code" name="code">
-			{{code}} 
-			</textarea>
+			<textarea id="code" name="code">{{code}}</textarea>
 		</td>
 	</tr>
 	<tr>

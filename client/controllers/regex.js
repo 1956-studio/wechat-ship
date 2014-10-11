@@ -80,7 +80,6 @@ regexControllers.addObject = function (regex, cb) {
 	// cb(null, id);
 
 	var model = new RegexModel(regex);
-
 	model.Save(function (err) {
 		if(!err) {
 			cb(null, model.id);

@@ -78,7 +78,7 @@
 		}
 		NProgress.start();
 		if(document.getElementById("code") != null){
-			$('#code').html(editor.getValue());
+			$('#code').html(editor.toTextArea());
 		}
 		$.ajax({
 			type: method || $("#"+formId).attr("method"),
