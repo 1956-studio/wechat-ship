@@ -15,29 +15,25 @@ var dao = {};
 //cb(err, result)
 dao.matchContent = function(content, cb) {
 	if(!content) {
-		cb(error.get("msg_null"), null);
+		cb(error.get("msgnull"), null);
 		return;
 	}
 	//find all commands
 	db.findRegex(function(err, results) {
 		if(err) {
-			log.dblog("error", err);
-			cb(error.get("syserr"), null);
-			return
+			return cb(error.get("syserr"), null);
 		}
 		if(results == null) {
 			log.dblog("error", "findCommands find nothing");
-			cb(error.get("syserr"), null);
-			return;
+			return cb(error.get("syserr"), null);
 		}
 		for(var i =0; i < results.length; i++) {
 			if(tools.matchKeyWords(results[i].title, content, "|")){
-				cb(null, results[i]);
-				return;	//stop match
+				return cb(null, results[i]);	//stop match
 			}
 		}
-		cb(null, null);		//if match nothing
 		log.daolog("info", "msg:[" + content + "] match nothing");
+		return cb(null, null);		//if match nothing
 	});
 }
 
@@ -45,9 +41,7 @@ dao.matchContent = function(content, cb) {
 dao.getList = function(cb) {
 	db.findList(function(err, results) {
 		if(err) {
-			log.dblog("error", err);
-			cb(error.get("syserr"), null);
-			return;
+			return cb(error.get("syserr"), null);
 		}
 		for(var i in results){
 			var items = new Array();
@@ -56,7 +50,7 @@ dao.getList = function(cb) {
 				items.push(getItems(results[i].views[j]));
 			}
 		}
-		cb(null, results);
+		return cb(null, results);
 	});
 }
 

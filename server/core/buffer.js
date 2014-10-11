@@ -16,6 +16,7 @@ buffer.set = function(key, val) {
 	client.set(key, val, function(err, res){
 		if (err || res != "OK") {
 			log.bufferlog("buffer set error: " + err + " result:" + res);
+			return;
 		}
 		client.expire(key, config.redis.expireTime);
 	});
@@ -25,9 +26,9 @@ buffer.get = function(key, cb) {
 	client.get(key, function(err, res){
 		if(err) {
 			log.bufferlog("buffer get error: " + err);
-			cb(error.get("syserr"));
+			return cb(error.get("syserr"));
 		}else {
-			cb(null, res);
+			return cb(null, res);
 		}
 	});
 }

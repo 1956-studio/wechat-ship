@@ -15,8 +15,10 @@ function delCache (openid) {
 user.addUser = function (user, cb) {
 	process.nextTick(function () {
 		db.addUser(user, function (err) {
-			if(err) {
-				return cb(err);
+			if(err == 1) {
+				return cb(error.get('regerr'));
+			}else if(err == 2){
+				return cb(error.get('syserr'));
 			}
 			cache(user);
 			return cb(null);
@@ -43,7 +45,7 @@ user.findUser = function (openid, cb) {
 	// cache the user info
 	buffer.get(openid, function (err, result) {
 		if(err) {	
-			return cb(err, null);
+			return cb(error.get('syserr'), null);
 		}
 		if(result) {
 			return cb(null, result);	// cache hit
@@ -51,7 +53,7 @@ user.findUser = function (openid, cb) {
 		process.nextTick(function () {
 			db.findUser(openid, function (err, result) {
 				if(err) {
-					return cb(err, null);
+					return cb(error.get('syserr'), null);
 				}
 				cache(result);
 				return cb(null, result);

@@ -49,6 +49,9 @@ log.dblog = function(level, str) {
 	if(config.log.db != null) {
 		winston.loggers.get("db").log(level, "[db] " + str);
 	}
+	if(level === 'error') {
+		console.trace(str);
+	}
 }
 
 log.daolog = function(level, str) {

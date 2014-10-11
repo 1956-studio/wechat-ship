@@ -21,6 +21,7 @@ function init(){
 		var pool  = mysql.createPool(mysqldb[i]);
 		mysqlPool.push(pool);
 	}
+	log.apilog("mysql init success!");
 }
 
 mysqlapi.getPool = function(no){

@@ -37,10 +37,14 @@ db.findRegex = function(cb) {
 	if(regex == null) {
 		RegexModel.find({}, function (err, doc) {
 			regex = doc;
-			cb(err, doc);
+			if(err){
+				log.dblog("error", "db.findRegex: " + err);
+				return cb(1);
+			}
+			return cb(null, doc);
 		});
 	}else {
-		cb(null, regex);
+		return cb(null, regex);
 	}
 };
 
@@ -66,21 +70,29 @@ db.findList = function(cb) {
 	
 	if(list == null) {
 		ListModel.find({}, function (err, doc) {
+			if(err){
+				log.dblog("error", "db.findList: " + err);
+				return cb(1);
+			}
 			list = doc;
-			cb(err, doc);
+			return cb(null, doc);
 		});
 	}else {
-		cb(null, list);
+		return cb(null, list);
 	}
 };
 
 // user
+// return: 1 用户已注册，2 系统错误
 db.addUser = function (u, cb) {
 	UserModel.count({openid: u.openid}, function (err, count) {
 		if(!err && count == 0) {
 			UserModel.createUser(u, cb);
+		}else if(!err) {
+			return cb(1);
 		}else {
-			cb(1);
+			log.dblog("error", "db.addUser: " + err);
+			return cb(2);
 		}
 	});
 }
