@@ -8,14 +8,6 @@ config.db = {
 	mongodb : "mongodb://localhost/ship"
 }
 
-config.db.log = {
-	mongodb : "mongodb://localhost/wechatlog"
-}
-
-config.db.regex = {
-	mongodb : "mongodb://localhost/regex"
-}
-
 config.log = {
 	db: {
 		console:{

@@ -24,7 +24,6 @@ function hashData (url, datastr) {
 	}else {
 		url = url.substr(indexS + 1);
 	}
-	console.log(url);	
 	return url+ "/" + md5.digest_s(datastr);
 }
 
@@ -162,10 +161,9 @@ api.writelog = function(level, str) {
 
 // wechat user
 api.addUser = function (info, userinfo, cb) {
-	// body...
 	var user_info = {
 		openid: info.FromUserName,
-		info: useinfo
+		info: userinfo
 	}
 	user.addUser(user_info, cb);
 }
@@ -184,6 +182,10 @@ api.updateUser = function (info, userInfo, cb) {
 
 api.findUser = function (info, cb) {
 	user.findUser(info.FromUserName, cb);
+}
+
+api.getError = function (errorStr) {
+	return error.get(errorStr);
 }
 
 module.exports = api;

@@ -8,7 +8,8 @@ var list = require("./list");
 var config = require("./config");
 var server = require("./server");
 var test = require("./test");
-var user = require("./user")
+var user = require("./user");
+var errors = require("./errors");
 var auth = require("../auth");
 
 router.get('/', auth.Auth, function(req, res) {
@@ -98,6 +99,11 @@ router.get("/server/restart", auth.Auth, server.restart);
 
 router.get("/test", auth.Auth, test.index);
 router.post("/test", auth.Auth, test.exec);
+
+router.get("/errors", auth.Auth, errors.index);
+router.post("/errors/:id", auth.Auth, errors.update);
+router.put("/errors", auth.Auth, errors.create);
+router.delete("/errors/:id", auth.Auth, errors.delete);
 
 
 module.exports = router;

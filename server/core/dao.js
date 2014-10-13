@@ -28,7 +28,7 @@ dao.matchContent = function(content, cb) {
 			return cb(error.get("syserr"), null);
 		}
 		for(var i =0; i < results.length; i++) {
-			if(tools.matchKeyWords(results[i].title, content, "|")){
+			if(tools.matchKeyWords(results[i].regex, content, "|")){
 				return cb(null, results[i]);	//stop match
 			}
 		}

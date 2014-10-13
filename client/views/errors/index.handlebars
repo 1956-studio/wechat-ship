@@ -1,0 +1,65 @@
+
+<!-- Button trigger modal -->
+<button class="btn btn-primary btn-lg" onclick="openDialog()">
+  add Error
+</button>
+
+<table>
+	<tr>
+		<td>tag</td><td>message</td>
+	</tr>
+	{{#list errors}}
+	<tr>
+		<td><a href="#" onclick="openDialog('{{{id}}}', '{{{tag}}}', '{{{message}}}')">{{{tag}}}</a></td><td>{{{message}}}</td><td><a href="#" onclick='to("/errors/{{{id}}}", "DELETE")'>删除</a>
+	</tr>
+	{{/list}}
+</table>
+
+<!-- Modal -->
+<div class="modal" id="Error_Modal" tabindex="-1" role="dialog" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;
+        </span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="title">Add Error</h4>
+      </div>
+      <div class="modal-body">
+       <!--form begin-->
+       <form id="error_form" method="post" >
+       		tag: <input id="tag" type="text" name="tag" />
+       		message: <input id="message" type="text" name="message" />
+       </form>
+       <!--form end -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" 
+        onclick="$('#Error_Modal').modal('hide'); subform('error_form'); ">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  // all params null -> insert
+  // all params not null -> update
+  function openDialog (id, tag, message) {
+    if(id && tag && message) {  // update
+      $('#Error_Modal #error_form').attr('method', 'post');
+      $('#Error_Modal #error_form').attr('action', '/errors/' + id)
+      document.getElementById('title').innerHTML = 'Update Error';
+      $('#Error_Modal #tag').val(tag);
+      $('#Error_Modal #message').val(message);
+      $('#Error_Modal').modal('show');
+      return;
+    }else { // insert
+      $('#Error_Modal #error_form').attr('method', 'put');
+      $('#Error_Modal #error_form').attr('action', '/errors')
+      document.getElementById('title').innerHTML = 'Add Error';
+      $('#Error_Modal #tag').val(tag);
+      $('#Error_Modal #message').val(message);
+      $('#Error_Modal').modal('show');
+    }
+  }
+</script>

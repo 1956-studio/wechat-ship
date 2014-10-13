@@ -105,7 +105,7 @@ list.delete = function (req, res) {
 			req.method = 'GET';
 			list.list(req, res);
 		}
-	})
+	});
 }
 
 // DELETE: /list/:listid/view/:viewid
