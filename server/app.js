@@ -38,7 +38,6 @@ app.use(session({
 
 app.use(express.query());
 app.use("/ship", wechat_ship.ship);
-app.post("/test", wechat_ship.test);
 
 
 dao.getList(function(err, results){

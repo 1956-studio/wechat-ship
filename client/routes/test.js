@@ -14,13 +14,13 @@ test.index = function (req, res) {
 test.exec = function (req, res) {
 	request.post({
 			url: config.testsever_url,
-			form: {
+			body: JSON.stringify({
 				ToUserName: req.body.tousername,
 				FromUserName: req.body.fromusername,
 				MsgType: req.body.msgtype,
 				Content: req.body.content,
 				Code: req.body.code
-			},
+			}),
 			timeout: 5000	// 5 seconds timeout
 		}, 
 		function (err, r, body) {
