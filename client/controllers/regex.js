@@ -105,9 +105,9 @@ regexControllers.deleteObject = function (id, cb) {
 	var index = getRegex(id);
 	var delRegex = regexs[index];
 	if(delRegex) {
-		delRegex.remove(function () {
+		delRegex.remove(function (err) {
 			[].splice.call(regexs, index, 1);
-			cb();
+			cb(err);
 		});
 	}
 }

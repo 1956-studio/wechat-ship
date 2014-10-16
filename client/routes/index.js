@@ -10,6 +10,7 @@ var server = require("./server");
 var test = require("./test");
 var user = require("./user");
 var errors = require("./errors");
+var chatUser =require('./chatUser');
 var auth = require("../auth");
 
 router.get('/', auth.Auth, function(req, res) {
@@ -105,5 +106,6 @@ router.post("/errors/:id", auth.Auth, errors.update);
 router.put("/errors", auth.Auth, errors.create);
 router.delete("/errors/:id", auth.Auth, errors.delete);
 
+router.get("/user", auth.Auth, user.index);
 
 module.exports = router;

@@ -3,7 +3,7 @@ var Schema = require('mongoose').Schema;
 
 var log = require('../core/log');
 
-var UserSchema = new mongoose.Schema({
+var ChatUserSchema = new mongoose.Schema({
 	openid: {
 		type: String,
 		require: true
@@ -20,7 +20,7 @@ var UserSchema = new mongoose.Schema({
 	}
 });
 
-UserSchema.methods.Save = function(done) {
+ChatUserSchema.methods.Save = function(done) {
 	this.save(function (err) {
 		if(err) {
 			db.log('error', 'User save: ' + err);
@@ -34,13 +34,13 @@ UserSchema.methods.Save = function(done) {
 /*
  * @param user{Object]
 */
-UserSchema.statics.createUser = function (user, done) {
+ChatUserSchema.statics.createUser = function (user, done) {
 	var Schema = this;
 	var model = new Schema(user);
 	return model.Save(done);
 }
 
 
-mongoose.model('user', UserSchema);
+mongoose.model('chatUser', ChatUserSchema);
 
-module.exports = UserSchema;
+module.exports = ChatUserSchema;
