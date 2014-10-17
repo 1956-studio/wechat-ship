@@ -7,7 +7,7 @@ var error = {}
 var errorInfo;
 
 error.init = function(){
-	errosModel.find({}, function (err, doc) {
+	errosModel.Find({}, function (err, doc) {
 		if(err) {
 			console.log(err);
 		}else {

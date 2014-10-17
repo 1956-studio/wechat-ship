@@ -4,11 +4,11 @@ var _ = require("underscore");
 var log = require('./log');
 var ListSchema = require('../dao/ListDao');
 var RegexSchema = require('../dao/RegexDao');
-var UserSchema = require('../dao/UserDao');
+var ChatUserSchema = require('../dao/ChatUserDao');
 
 var RegexModel = mongoose.model('regex');
 var ListModel = mongoose.model('list');
-var UserModel = mongoose.model('user');
+var ChatUserModel = mongoose.model('chatUser');
 
 var db = {};
 
@@ -20,7 +20,7 @@ var list = null;
 // var user = null;	// I had done it in user.js! but I forget...TAT
 /******buffer********/
 
-// UserModel.find({}, function (err, doc) {
+// ChatUserModel.find({}, function (err, doc) {
 // 	if(err) {
 // 		console.log(err);
 // 		return cb(err);
@@ -35,10 +35,9 @@ db.findRegex = function(cb) {
 	// results.push({keys:"aaa", cmd: "res.wait('view')"});
 	// results.push({keys:"ccc", cmd: "res.wait('view2')"});
 	if(regex == null) {
-		RegexModel.find({}, function (err, doc) {
+		RegexModel.Find({}, function (err, doc) {
 			regex = doc;
 			if(err){
-				log.dblog("error", "db.findRegex: " + err);
 				return cb(1);
 			}
 			return cb(null, doc);
@@ -69,9 +68,8 @@ db.findList = function(cb) {
 	// results.push(result2);
 	
 	if(list == null) {
-		ListModel.find({}, function (err, doc) {
+		ListModel.Find({}, function (err, doc) {
 			if(err){
-				log.dblog("error", "db.findList: " + err);
 				return cb(1);
 			}
 			list = doc;
@@ -83,30 +81,29 @@ db.findList = function(cb) {
 };
 
 // user
-// return: 1 用户已注册，2 系统错误
+// return: 1 用户已注册，or other info
 db.addUser = function (u, cb) {
-	UserModel.count({openid: u.openid}, function (err, count) {
+	ChatUserModel.count({openid: u.openid}, function (err, count) {
 		if(!err && count == 0) {
-			UserModel.createUser(u, cb);
+			ChatUserModel.createUser(u, cb);
 		}else if(!err) {
 			return cb(1);
 		}else {
-			log.dblog("error", "db.addUser: " + err);
 			return cb(2);
 		}
 	});
 }
 
 db.delUser = function (openid, cb) {
-	UserModel.remove({openid: openid}, cb);
+	ChatUserModel.remove({openid: openid}, cb);
 }
 
 db.updateUser = function (userObj, cb) {
-	UserModel.findOneAndUpdate({openid: userObj.openid}, userObj, cb);
+	ChatUserModel.findOneAndUpdate({openid: userObj.openid}, userObj, cb);
 }
 
 db.findUser = function (openid, cb) {
-	UserModel.findOne({openid: openid}, cb);
+	ChatUserModel.findOne({openid: openid}, cb);
 }
 
 module.exports = db;

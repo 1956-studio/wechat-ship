@@ -106,6 +106,6 @@ router.post("/errors/:id", auth.Auth, errors.update);
 router.put("/errors", auth.Auth, errors.create);
 router.delete("/errors/:id", auth.Auth, errors.delete);
 
-router.get("/user", auth.Auth, user.index);
+router.get("/user", auth.Auth, chatUser.index);
 
 module.exports = router;
