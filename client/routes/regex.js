@@ -1,6 +1,3 @@
-var express = require('express');
-var router = express.Router();
-
 var regexControllers = require("../controllers/regex.js");
 
 var regex = {};
@@ -75,8 +72,7 @@ regex.delete = function (req, res) {
 			return;
 		}
 		req.method = 'GET'
-		regex.list(req, res)
-	})
-	
+		regex.list(req, res);
+	});
 }
 module.exports = regex;

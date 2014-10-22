@@ -17,9 +17,6 @@ log.init = function() {
 			level: config.log.console_level 
 		}) );
 	}
-	else{
-		logger = null;
-	}
 	logger = new (winston.Logger)({transports: transports});
 
 	//category

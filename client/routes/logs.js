@@ -1,7 +1,6 @@
-var express = require('express');
-var logs = {};
-
 var logsControllers = require("../controllers/logs.js");
+
+var logs = {};
 
 // GET: /logs/
 // GET: /logs/:page

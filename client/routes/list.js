@@ -1,6 +1,3 @@
-var express = require('express');
-var router = express.Router();
-
 var listControllers = require("../controllers/list.js");
 
 var list = {};

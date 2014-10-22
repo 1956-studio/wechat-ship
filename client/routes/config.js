@@ -1,5 +1,3 @@
-var express = require('express');
-
 var configControllers = require("../controllers/config.js");
 
 /*

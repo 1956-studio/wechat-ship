@@ -1,0 +1,16 @@
+<h2>chat user</h2>
+<ul>
+	<table>
+		<th>
+			<td>openid</td><td>regTime</td>
+		</th>
+		{{#list chatUser}}
+		<tr>
+			<td><a href="#" onclick="to('/chatUser/{{{id}}}')">{{{openid}}}</a></td><td>{{{regTime}}}</td>
+			<td><a href="#" onclick="to('/chatUser/{{{id}}}', 'DELETE')">删除</a></td>
+		</tr>
+		{{/list}}
+	</table>
+
+	{{> pager}}
+</ul>

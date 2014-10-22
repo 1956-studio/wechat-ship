@@ -1,0 +1,18 @@
+
+<form id="form_update" action="/chatUser/update" method="post">
+<table>
+<input type="hidden" value="{{id}}" name="id" />
+	<tr>
+		<td>title</td><td> <input type="text" name="openid" value="{{openid}}" /> </td>
+	</tr>
+	<tr>
+		<td>regTime</td><td> <input type="text" name="regTime" value="{{regTime}}" /> </td>
+	</tr>
+	<tr>
+		<td>info</td><td> <input type="text" name="info" value="{{info}}" /> </td>
+	</tr>
+	<tr>
+		<td><input type='button' value="保存" onclick="subform('form_update')" /></ins></td>
+	</tr>
+</table>
+</form>

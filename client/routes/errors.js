@@ -1,6 +1,3 @@
-var express = require('express');
-var router = express.Router();
-
 var errorsControllers = require("../controllers/errors.js");
 
 var errors = {};
