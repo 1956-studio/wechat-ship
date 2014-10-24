@@ -1,9 +1,6 @@
 var winston = require('winston');
 require('winston-mongodb').MongoDB;
 
-var config = require("./config");
-
-
 var log = {};
 
 var logger;

@@ -44,7 +44,7 @@ chatUser.update = function (req, res) {
 }
 
 // DELETE: /chatUser/{{id}}
-chatUser.delete = function (req, res) {console.log('delete');
+chatUser.delete = function (req, res) {
 	chatUserController.deleteObject(req.params.id, function (err) {
 		if(err) {
 			res.writeHead(404);

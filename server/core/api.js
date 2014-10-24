@@ -3,7 +3,6 @@ var util = require("util");
 var async = require("async");
 var md5 = require("md5");
 
-var config = require("./config");
 var log = require("./log");
 var error = require("./error");
 var tools = require("./tools");

@@ -1,6 +1,5 @@
 var redis = require("redis");
 
-var config = require("./config");
 var log = require("./log");
 var error = require("./error");
 

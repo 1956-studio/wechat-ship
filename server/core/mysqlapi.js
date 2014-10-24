@@ -2,7 +2,6 @@ mysqlapi = {};
 
 var mysql = require("mysql");
 
-var config = require("./config");
 var log = require("./log");
 
 var mysqlPool;

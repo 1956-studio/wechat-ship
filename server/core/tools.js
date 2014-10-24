@@ -25,4 +25,9 @@ tools.stringToObj = function(str) {
 	return eval("(" + str + ")");  
 }
 
+tools.writeConfigToFile = function(cb) {
+	var filepath = path.resolve(__dirname, '..') + path.sep + 'config.json';
+	fs.writeFile(filepath, JSON.stringify(config) + ' ', cb);
+}
+
 module.exports = tools;

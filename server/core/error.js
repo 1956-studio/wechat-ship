@@ -14,7 +14,6 @@ error.init = function(){
 			errorInfo = doc;
 			console.log('error info init ok!');
 		}
-		console.log(errorInfo);
 	});
 }
 

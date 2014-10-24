@@ -5,7 +5,6 @@ var http = require('http');
 var wechat = require('wechat');
 
 var dao = require('./dao');
-var config = require('./config');
 var log = require("./log");
 var error = require("./error");
 var api = require("./api");
@@ -20,7 +19,6 @@ if (cluster.isMaster) {
 	});
 } else {
 	var domain = require('domain');
-	console.log('in child');
 	http.createServer(function(req, res) {
 		var d = domain.create();
 		d.on('error', function(er) {

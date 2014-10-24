@@ -1,8 +1,10 @@
+config = require('../config');	// global
+
 var async = require("async");
 var wechat = require('wechat');
 
 var dao = require('./dao');
-var config = require('./config');
+
 var log = require("./log");
 var error = require("./error");
 var api = require("./api");

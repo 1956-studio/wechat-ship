@@ -12,7 +12,7 @@ var ChatUserModel = mongoose.model('chatUser');
 
 var db = {};
 
-mongoose.connect(config.db.mongodb);
+mongoose.connect(config.mongodb.url);
 
 /******buffer********/
 var regex = null;
