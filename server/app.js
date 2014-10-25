@@ -7,7 +7,7 @@ var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 
 var wechat_ship = require("./core/index");
-var config = require("./core/config")
+var config = require("./config")
 var log = require("./core/log");
 var error = require("./core/error");
 
@@ -25,7 +25,6 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.set('port', process.argv[2] || 80);
 
-config.init();
 log.init();
 error.init();
 
@@ -56,6 +55,7 @@ dao.getList(function(err, results){
 	for (var i = 0; i < results.length; i++) {
 		List.add(results[i].name, results[i].items);
 	};
+	console.log('List init ok!');
 });
 
 var server = app.listen(app.get('port'), function() {

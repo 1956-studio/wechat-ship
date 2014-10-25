@@ -17,7 +17,7 @@ var RegexSchema = new mongoose.Schema({
 	}
 });
 
-RegexSchema.methods.Find = function (conditions, fields, done) {
+RegexSchema.statics.Find = function (conditions, fields, done) {
 	if(!fields) {
 		this.find(conditions, function (err, doc) {
 			if(err) {
