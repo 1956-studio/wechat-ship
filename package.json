@@ -1,41 +1,43 @@
 {
-  "name": "let-wechat",
+  "name": "wechat-ship",
   "version": "0.0.1",
-  "private": true,
   "scripts": {
-    "start": "node app.js"
+    "startClient": "node client/app.js",
+    "startServer": "node server/app.js"
   },
+  "description": "",
   "dependencies": {
-    "underscore":"*",
+    "underscore": "*",
     "express": ">=4.0.0",
     "wechat": "*",
-  	"request": "*",
-  	"async": "*",
-  	"mongoose": "*",
-  	"redis": "*",
+    "request": "*",
+    "async": "*",
+    "mongoose": "*",
+    "redis": "*",
     "static-favicon": "~1.0.0",
-    "mysql":"*",
-    "connect-redis":">=2.0.0",
-    "winston":"*",
-    "winston-mongodb":"*",
-    "static-favicon":"~1.0.0",
+    "mysql": "*",
+    "connect-redis": ">=2.0.0",
+    "winston": "*",
+    "winston-mongodb": "*",
+    "static-favicon": "~1.0.0",
     "cookie-parser": "~1.0.1",
     "body-parser": "~1.0.0",
-    "express-session":"*",
-    "mocha":"*",
-    "should":"*",
-    "express-handlebars":"*",
-    "mysql":"*",
-    "forever":"*",
-    "md5":"*"
+    "express-session": "*",
+    "mocha": "*",
+    "should": "*",
+    "express-handlebars": "*",
+    "mysql": "*",
+    "forever": "*",
+    "md5": "*"
   },
   "engines": {
     "node": ">= 0.8.0"
   },
-  "repository":{
-	"type": "git",
-	"url": "git@github.com:LiSheep/let-wechat.git"
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/LiSheep/wechat-ship.git"
   },
+  "readmeFilename": "README.md",
   "author": "LiSheep",
   "license": "MIT"
 }
