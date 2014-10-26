@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var config = require('../config');
 var page = require('./pager');
+var log = require('../log');
 
 // var db = mongoose.connect(config.db.mongodb);
 
@@ -11,46 +12,28 @@ var dbLog = {};
 	{ "_id" : ObjectId("53f1ad57e1793c881cb76794"), "message" : "wechat-ship start s
 	uccess at port: 80", "timestamp" : ISODate("2014-08-18T07:37:59.205Z"), "level"
 	: "info", "meta" : {  } }
-	*/
+*/
 var log_schema = new mongoose.Schema({
 	message: String,
-	time: { type: Date, default: Date.now },
+	time: { type: Date, default: Date.now, get:formateDate },
 	level: String
 });
 
+function formateDate (date) {
+	if(!date) {
+		return date;
+	}
+	return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+}
+
 var model = mongoose.model('log', log_schema);
-
-// function getCondition(condition, message, times, num, cb) {
-// 	if (message.length === 0 || message) {
-		
-// 	} else {
-// 		condition.message = message;
-// 	}
-
-// 	if (times.length != 2 || times) {
-		
-// 	} else {
-// 		condition.startDate = times[0];
-// 		condition.endDate = times[1];
-// 	}
-
-// // condtion = {
-// // 	message: message,
-// // 	startDate: startDate,
-// // 	endDate: endDate
-// // }
-
-// // {message: "hello", timestamp: {$gt: startDate, $lt: endDate}}
-
-// 	cb(condition, num, callback);
-// }
 
 dbLog.getResult = function (num, message, times, cb) {
 
 	var condition = {};
 
 	if (message && message.length != 0) {
-		condition.message = message;
+		condition.message = {$regex: message};
 	}
 	if (times && times.length == 2 && times[0] && times[1]) {
 		condition.timestamp = {$gte: times[0], $lte: times[1]};
@@ -61,32 +44,12 @@ dbLog.getResult = function (num, message, times, cb) {
 	var start = (p.num - 1) * p.pageSize;
 	model.find(condition).skip(start).limit(p.pageSize).exec(function (err, result) {
 		if (err) {
-			// TODO error cb
-			cb(null);
+			log.dblog('error', 'find logs err: ' + err);
+			cb(1);
 		} else {
 			cb(null, result);
 		}
 	});
-
-	// getCondition(condition, message, times, num, function (condition, num, cb) {
-	// 	var page = new page(num);
-
-	// 	var start = (page.num - 1) * page.pageSize;
-
-	// 	var cond = {
-	// 		message: condition.message, 
-	// 		timestamp: {$gt: condition.startDate, $lt: condition.endDate}
-	// 	}
-
-	// 	model.find(cond).skip(start).limit(page.pageSize).exec(function (err, result) {
-	// 		if (err) {
-	// 			// TODO error cb
-	// 			cb(null);
-	// 		} else {
-	// 			cb(null, result);
-	// 		}
-	// 	});
-	// });
 }
 
 module.exports = dbLog;
