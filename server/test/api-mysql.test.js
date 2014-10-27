@@ -1,4 +1,5 @@
 require("should");
+config = require('../config');
 
 var mysqlapi = require("../core/mysqlapi");
 

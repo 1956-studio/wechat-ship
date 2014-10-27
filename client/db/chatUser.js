@@ -20,5 +20,3 @@ var UserSchema = new mongoose.Schema({
 
 
 mongoose.model('chatUser', UserSchema);
-
-module.exports = UserSchema;

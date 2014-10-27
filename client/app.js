@@ -6,12 +6,13 @@ var favicon = require('static-favicon');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var db = require('./db/index');
 var routes = require('./routes/index');
 var log = require('./log');
 var config = require("./config");
 var userControllers = require('./controllers/user');
 var auth = require('./auth');
-var db = require('./db');
+
 
 var app = express();
 

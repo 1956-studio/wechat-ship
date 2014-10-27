@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
-var Schema = require('mongoose').Schema;
-var chatuserSchema = require('../db/chatUser');
+
 var chatUserModel = mongoose.model('chatUser');
 
 var chatUserController = {};
