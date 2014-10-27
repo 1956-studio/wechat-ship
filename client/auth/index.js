@@ -46,11 +46,11 @@ auth.passport = function () {
 		req.login = function (username, password, done) {
 			auth.serial(username, password, function (err, user) {
 				if(err) {
-					done(new Error(err));
+					done(err);
 					return;
 				}
 				if(user == null) {
-					done(new Error(_AUTHFAILD));
+					done(_AUTHFAILD);
 					return;
 				}
 				req.session.user = user;
