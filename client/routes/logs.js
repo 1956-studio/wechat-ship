@@ -12,9 +12,6 @@ logs.list = function(req, res) {
 				res.writeHead(404);
 				res.end();
 			}else{
-				for(var log in logs) {
-					if(log.time)
-				}
 				var m_results = {
 					headTitle: "logs",
 					logs: results

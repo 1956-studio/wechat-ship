@@ -12,10 +12,10 @@ var logdir = "/tmp/wechat_server";
 
 /*
  start several program
- arg: startPort: start program port. ex: 8000, then will start 8000 8001 ... 8000+nums
- nums: [optional] best equal to os.cups().length
+ arg: startPort: start program port. ex: 8000, then will start 8000 8001 ... 8000+num
+ num: [optional] best equal to os.cups().length
  */
-server.startup = function(startPort, nums){
+server.startup = function(startPort, num){
 	try{
 		fs.mkdirSync(logdir);
 	}catch(e){
@@ -24,11 +24,8 @@ server.startup = function(startPort, nums){
 	if(typeof startPort != "number"){
 		throw "arg: startPort is not number";
 	}
-	if(nums && typeof nums != "number") {
-		throw "arg: nums is not number";
-	}
-	nums = nums || os.cpus().length
-	for(var i = 0; i < nums; i++){
+	num = num || os.cpus().length;
+	for(var i = 0; i < num; i++){
 		forever.startDaemon(serverdir, {
 			logFile: logdir + "/all.log",
 			pidFile: logdir + "/server.pid",

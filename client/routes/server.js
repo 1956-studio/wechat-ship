@@ -6,18 +6,19 @@ var server = {};
 server.startup = function (req, res) {
 	if(req.method == "POST") {
 		var port = Number(req.body.port);
+		var num = Number(req.body.num);
+		if(isNaN(num)) {
+			num = undefined;
+		}
 		if(isNaN(port)) {
 			res.writeHead(400);
 			res.end("port is not number");
 		}else {
-			serverController.startup(port);
-			res.redirect("/server/liststatus");
+			serverController.startup(port, num);
+			res.redirect("/server");
 		}
-	}else if(req.method == "GET") {
-		res.render("server/startup");
 	}else {
-		res.wliststatusriteHead(400);
-		res.end();
+		res.redirect("/server");
 	}
 }
 
@@ -41,6 +42,16 @@ server.listStatus = function (req, res) {
 
 // GET: /server/stop
 server.stop = function (req, res) {
+	if(!isNaN(Number(req.body.no))) {
+		serverController.stop(req.body.no, function (err) {
+			if(err) {
+				res.writeHead(400);
+				res.end(err.toString());
+			}else {
+				res.redirect("/server");
+			}
+		});
+	}
 	serverController.stopAll(function (err) {
 		if(err) {
 			res.writeHead(400);

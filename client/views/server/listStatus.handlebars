@@ -1,7 +1,15 @@
 <p color="red">{{err}}</p>
 
+启动服务：
+<form id="start_form" action="/server/startup" method="post">
+	<input type="text" name="port" />
+	<input type="text" name="num"/>
+	<input type="button" onclick="subform('start_form')" value="startup">
+</form>
+
 <a href="#" onclick="to('/server/stop')">stop</a>
 <a href="#" onclick="to('/server/restart')">restart</a>
+
 
 <table>
 	<tr>
@@ -9,6 +17,7 @@
 		{{#if result}}
 		{{#list result}}
 		<tr>
+		<td>{{uid}}</td>
 		<td>{{file}}</td>
 		<td>{{options}}</td>
 		<td>{{#if running}}Running{{else}}Not running{{/if}}</td>
@@ -17,3 +26,4 @@
 		{{/if}}
 	</tr>	
 </table>
+
