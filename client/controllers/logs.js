@@ -1,4 +1,6 @@
-var dblog = require('../db/logs');
+var mongoose = require('mongoose');
+var logsModel = mongoose.model('log');
+var config = require('../config');
 
 logsControllers = {};
 
@@ -13,32 +15,6 @@ logsControllers.getList = function(page, message, times, cb){
 uccess at port: 80", "timestamp" : ISODate("2014-08-18T07:37:59.205Z"), "level"
 : "info", "meta" : {  } }
 	*/
-	/*
-	var begTime = times[0];
-	var endTime = times[1];
-	//TODO: with db
-	cb(null, {
-		logs:[
-			{
-				title:"1111",
-				level:"info",
-				message:"wechat",
-				timestamp:new Date()
-			},
-			{
-				title:"222",
-				level:"info",
-				message:"wechatttt",
-				timestamp:new Date()
-			}
-		],*/
-	// 	page:{
-	// 		current: 1,	/*当前页数：第current页*/
-	// 		size: 10,	/*每页条数*/
-	// 		count: 1000,	/*总条数： 共count条*/
-	// 		total: 100	/*总页数: 共total页*/
-	// 	}
-	// });
 
 	if(times[0] && times[1] && times[0] != '' && times[1] != '') {
 		var m_times = new Array(2);
@@ -49,7 +25,11 @@ uccess at port: 80", "timestamp" : ISODate("2014-08-18T07:37:59.205Z"), "level"
 			// do nothing
 		}
 	}
-	dblog.getResult(page.num, message, m_times, cb);
+	if(typeof page !== 'number') {
+		page = 1;
+	}
+	logsModel.getResult(page, message, m_times, cb);
+
 }
 
 

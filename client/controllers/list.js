@@ -1,6 +1,5 @@
 var log = require('../log');
 var mongoose = require('mongoose');
-var ListSchema = require('../db/list');
 
 var ListModel = mongoose.model('list');
 

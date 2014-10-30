@@ -1,6 +1,5 @@
 var log = require('../log');
 var mongoose = require('mongoose');
-var ErrorsSchema = require('../db/errors');
 
 var ErrorsModel = mongoose.model('error');
 

@@ -1,11 +1,9 @@
 var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 var config = require('../config');
-var page = require('./pager');
 var log = require('../log');
 
 // var db = mongoose.connect(config.db.mongodb);
-
-var dbLog = {};
 
 // log schema
 /*
@@ -13,43 +11,62 @@ var dbLog = {};
 	uccess at port: 80", "timestamp" : ISODate("2014-08-18T07:37:59.205Z"), "level"
 	: "info", "meta" : {  } }
 */
-var log_schema = new mongoose.Schema({
+var LogSchema = new mongoose.Schema({
 	message: String,
-	time: { type: Date, default: Date.now, get:formateDate },
+	time: {
+		type: Date,
+		default: Date.now,
+		get: formateDate
+	},
 	level: String
 });
 
-function formateDate (date) {
-	if(!date) {
+function formateDate(date) {
+	if (!date) {
 		return date;
 	}
 	return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
 }
 
-var model = mongoose.model('log', log_schema);
+LogSchema.plugin(mongoosePaginate);
 
-dbLog.getResult = function (num, message, times, cb) {
+
+LogSchema.statics.getResult = function(num, message, times, cb) {
 
 	var condition = {};
 
 	if (message && message.length != 0) {
-		condition.message = {$regex: message};
+		condition.message = {
+			$regex: message
+		};
 	}
-	if (times && times.length == 2 && times[0] && times[1]) {
-		condition.timestamp = {$gte: times[0], $lte: times[1]};
+	if (times && times.length == 2) {
+		if (times[0] || times[1]) {
+			condition.timestamp = {};
+		}
+		if (times[0]) {
+			condition.timestamp['$gte'] = times[0];
+		}
+		if (times[1]) {
+			condition.timestamp['$lte'] = times[1];
+		}
 	}
 
-	var p = new page(num);
-	
-	var start = (p.num - 1) * p.pageSize;
-	model.find(condition).skip(start).limit(p.pageSize).exec(function (err, result) {
+	function paginateCallback(err, pageCount, paginatedResults, itemCount) {
 		if (err) {
-			log.dblog('error', 'find logs err: ' + err);
-			cb(1);
-		} else {
-			cb(null, result);
+			log.dblog('error', 'logs paginate ' + err);
+			return cb(1);
 		}
-	});
+		var page = {
+			total: pageCount,
+			/*总页数: 共total页*/
+			count: itemCount /*总条数： 共count条*/
+		};
+		return cb(null, paginatedResults, page);
+	}
+
+	this.paginate(condition, num, config.page.size,  paginateCallback);
 }
 
-module.exports = dbLog;
+
+mongoose.model('log', LogSchema);

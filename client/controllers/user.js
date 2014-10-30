@@ -2,18 +2,21 @@
 userControllers = {};
 
 userControllers.login = function(username, password, cb){
-	// TODO: call db to get userinfo
-	cb(null, {
-		id: "111",
-		username: "ltc",
-	});
+	if(username == 'admin' && password == '123456'){
+		cb(null, {
+			id: "111",
+			username: "admin",
+		});
+	}else {
+		cb(1);
+	}
 }
 
 userControllers.get = function (id, cb) {
 	// TODO: 
 	cb(null, {
 		id: "111",
-		username: "ltc"
+		username: "admin"
 	});
 }
 

@@ -3,7 +3,7 @@ var http = require("http");
 
 var buffer = require("../core/buffer");
 var api = require("../core/api");
-var config = require("../core/config");
+config = require('../config');
 var assert = require('assert');
 
 describe('api: post', function() {

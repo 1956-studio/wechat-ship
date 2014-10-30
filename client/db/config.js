@@ -12,18 +12,14 @@ var ConfigSchema = new mongoose.Schema({
 		resave: Boolean,
 		saveUninitialized: Boolean
 	},
-	mysql: {
-		[
-			host: String,
-			user: String,
-			password: String,
-			database: String
-		]
-	},
+	mysql: [{
+		host: String,
+		user: String,
+		password: String,
+		database: String
+	}],
 	timeout: Number
 });
 
 
 mongoose.model('config', ConfigSchema);
-
-module.exports = ConfigSchema;

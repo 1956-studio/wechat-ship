@@ -1,5 +1,0 @@
-
-indexControllers = {};
-
-
-module.exports = indexControllers;

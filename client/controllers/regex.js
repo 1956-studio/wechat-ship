@@ -1,4 +1,3 @@
-var RegexSchema = require('../db/regex');
 var mongoose = require('mongoose');
 var _ = require('underscore');
 

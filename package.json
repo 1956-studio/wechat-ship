@@ -21,14 +21,15 @@
     "winston-mongodb": "*",
     "static-favicon": "~1.0.0",
     "cookie-parser": "~1.0.1",
-    "body-parser": "~1.0.0",
+    "body-parser": "~1.0.0",  
     "express-session": "*",
     "mocha": "*",
     "should": "*",
     "express-handlebars": "*",
     "mysql": "*",
     "forever": "*",
-    "md5": "*"
+    "md5": "*",
+    "mongoose-paginate": "*"
   },
   "engines": {
     "node": ">= 0.8.0"
