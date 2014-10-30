@@ -1,18 +1,21 @@
-var domain = require('domain');
-var cluster = require('module');
+var cluster = require('cluster');
 var async = require("async");
 var http = require('http');
 var wechat = require('wechat');
 
-var dao = require('./dao');
-var log = require("./log");
-var error = require("./error");
+config = require('../config');
+// var dao = require('./dao');
+// var log = require("./log");
+// var error = require("./error");
 var api = require("./api");
 var mysqlapi = require("./mysqlapi");
 
+
+
 if (cluster.isMaster) {
+	console.log('test server starting...');
 	cluster.fork();
-	console.log('fork new process');
+	console.log('fork new process success!');
 	cluster.on('disconnect', function(worker, code, signal) {
 		console.log('worker ' + worker.process.pid + ' disconnect');
 		cluster.fork();
@@ -88,6 +91,17 @@ var handleRequest = function(req, res) {
 				res.end("error nowait argument");
 			}
 		}
-		eval(dataObj.Code);
+		try{
+			eval(dataObj.Code);
+		}catch(e){
+			res.end(e.toString());
+		}
 	});
 }
+
+process.on('uncaughtException', function (err) {
+  //打印出错误
+  console.log(err);
+  //打印出错误的调用栈方便调试
+  console.log(err.stack)；
+});
