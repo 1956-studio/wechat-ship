@@ -26,7 +26,6 @@
     "mocha": "*",
     "should": "*",
     "express-handlebars": "*",
-    "mysql": "*",
     "forever": "*",
     "md5": "*",
     "mongoose-paginate": "*"
