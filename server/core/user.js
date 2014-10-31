@@ -52,8 +52,8 @@ user.findUser = function (openid, cb) {
 		}
 		process.nextTick(function () {
 			db.findUser(openid, function (err, result) {
-				if(err) {
-					return cb(error.get('syserr'), null);
+				if(err){
+					return cb(err);
 				}
 				cache(result);
 				return cb(null, result);

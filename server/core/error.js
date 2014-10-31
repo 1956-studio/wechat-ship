@@ -10,6 +10,7 @@ var defaultError = new Array();
 defaultError.push(new errosModel({tag: 'syserr', message: '系统错误'}));
 defaultError.push(new errosModel({tag: 'msgnull', message: '消息为空'}));
 defaultError.push(new errosModel({tag: 'regerr', message: '已经注册过了'}));
+defaultError.push(new errosModel({tag: 'nouser', message: '没有找到这个用户'}));
 
 error.init = function(){
 	errosModel.Find({}, function (err, doc) {

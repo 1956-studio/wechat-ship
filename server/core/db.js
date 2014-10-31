@@ -95,15 +95,36 @@ db.addUser = function (u, cb) {
 }
 
 db.delUser = function (openid, cb) {
-	ChatUserModel.remove({openid: openid}, cb);
+	ChatUserModel.remove({openid: openid}, function (err, res) {
+		if(err) {
+			log.dblog('error', 'db.delUser: ' + err);
+			return cb(error.get('syserr'));
+		}
+		cb(null, res);
+	});
 }
 
 db.updateUser = function (userObj, cb) {
-	ChatUserModel.findOneAndUpdate({openid: userObj.openid}, userObj, cb);
+	ChatUserModel.findOneAndUpdate({openid: userObj.openid}, userObj, function (err, res) {
+		if(err) {
+			log.dblog('error', 'db.updateUser: ' + err);
+			return cb(error.get('syserr'));
+		}
+		cb(null, res);
+	});
 }
 
 db.findUser = function (openid, cb) {
-	ChatUserModel.findOne({openid: openid}, cb);
+	ChatUserModel.findOne({openid: openid}, function (err, res) {
+		if(err) {
+			log.dblog('error', 'db.findUser: ' + err);
+			return cb(error.get('syserr'));
+		}
+		if(!res) {
+			return cb(error.get('nouser'));
+		}
+		cb(null, res);
+	});
 }
 
 module.exports = db;
