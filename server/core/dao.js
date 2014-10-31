@@ -6,6 +6,8 @@ var error = require('./error');
 var log = require('./log');
 var tools = require('./tools');
 
+var api = require("./api");
+var mysqlapi = require("./mysqlapi");
 
 var dao = {};
 
@@ -28,8 +30,11 @@ dao.matchContent = function(content, cb) {
 			return cb(error.get("syserr"), null);
 		}
 		for(var i =0; i < results.length; i++) {
-			if(tools.matchKeyWords(results[i].regex, content, "|")){
-				return cb(null, results[i]);	//stop match
+			var test = tools.matchKeyWords(results[i].regex, content, "|")
+			if(test){
+				var ret_result = results[i];
+				ret_result.group = test;
+				return cb(null, ret_result);
 			}
 		}
 		log.daolog("info", "msg:[" + content + "] match nothing");
@@ -54,7 +59,6 @@ dao.getList = function(cb) {
 	});
 }
 
-
 /*
 what a fuck function, if not used it, item["val"] would be undefined!
 */
@@ -62,6 +66,7 @@ function getItems (item) {
 	var result = new Array(2);
 	result[0] = item["title"];
 	result[1] = function (info, req, res) {
+		info.openid = info.FromUserName;
 		eval(item["code"]);
 	};
 	return result;
