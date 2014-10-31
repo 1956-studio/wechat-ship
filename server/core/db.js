@@ -5,6 +5,7 @@ var log = require('./log');
 var ListSchema = require('../dao/ListDao');
 var RegexSchema = require('../dao/RegexDao');
 var ChatUserSchema = require('../dao/ChatUserDao');
+var error = require('./error');
 
 var RegexModel = mongoose.model('regex');
 var ListModel = mongoose.model('list');
@@ -84,12 +85,13 @@ db.findList = function(cb) {
 // return: 1 用户已注册，or other info
 db.addUser = function (u, cb) {
 	ChatUserModel.count({openid: u.openid}, function (err, count) {
-		if(!err && count == 0) {
-			ChatUserModel.createUser(u, cb);
-		}else if(!err) {
-			return cb(1);
+		if(err) {
+			return cb(error.get('syserr'));
+		}
+		if(count == 0) {
+			return ChatUserModel.createUser(u, cb);
 		}else {
-			return cb(2);
+			return cb(error.get('regerr'));
 		}
 	});
 }

@@ -164,14 +164,23 @@ api.addUser = function (info, userinfo, cb) {
 		openid: info.FromUserName,
 		info: userinfo
 	}
+	if(!cb || typeof cb !== 'function') {
+		cb = function () {};
+	}
 	user.addUser(user_info, cb);
 }
 
 api.delUser = function (info, cb) {
+	if(!cb || typeof cb !== 'function') {
+		cb = function () {};
+	}
 	user.delUser(info.FromUserName, cb);
 }
 
 api.updateUser = function (info, userInfo, cb) {
+	if(!cb || typeof cb !== 'function') {
+		cb = function () {};
+	}
 	var user = {
 		openid: info.FromUserName,
 		info: userinfo
@@ -180,6 +189,9 @@ api.updateUser = function (info, userInfo, cb) {
 }
 
 api.findUser = function (info, cb) {
+	if(!cb || typeof cb !== 'function') {
+		throw 'api.findUser have to pass args: cb';
+	}
 	user.findUser(info.FromUserName, cb);
 }
 

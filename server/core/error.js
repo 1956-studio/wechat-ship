@@ -20,7 +20,7 @@ error.init = function(){
 			for(var i in defaultError) {
 				defaultError[i].Save();
 			}
-			doc = defaultError;
+			errorInfo = defaultError;
 		}
 		else {
 			errorInfo = doc;
@@ -32,12 +32,12 @@ error.init = function(){
 }
 
 error.get = function(key) {
-	if(!doc) {
+	if(!errorInfo) {
 		return '系统错误';
 	}
-	for(var i = 0; i < doc.length; i++) {
+	for(var i = 0; i < errorInfo.length; i++) {
 		if(errorInfo[i].tag == key) {
-			return errorInfo.message;
+			return errorInfo[i].message;
 		}
 	}
 	return '系统错误';

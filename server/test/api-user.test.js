@@ -1,4 +1,5 @@
 var api = require("../core/api");
+var config = require('../config');
 
 require("should");
 var assert = require("assert");
@@ -7,19 +8,20 @@ describe('api: user', function() {
 	var info = {
 			FromUserName: "123"
 	}
-	it("add user", function (done) {
+	it("add user should ok", function (done) {
 		api.addUser(info, "1018110223", function (err, result) {
+			assert.equal(err, null, "err should be null");
 			done();
 		});
 	});
-	it("find user", function (done) {
+	it("find user should ok", function (done) {
 		api.findUser(info, function (err, user) {
 			assert.equal(err, null, "err should be null");
 			user.should.not.be.eql(null);
 			done();
 		});
 	});
-	it("del user", function (done) {
+	it("del users should ok", function (done) {
 		api.delUser(info, function (err) {
 			assert.equal(err, null, "err should be null");
 			api.findUser(info, function (err, user) {

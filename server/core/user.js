@@ -15,15 +15,12 @@ function delCache (openid) {
 user.addUser = function (user, cb) {
 	process.nextTick(function () {
 		db.addUser(user, function (err) {
-			if(err == 1) {
-				return cb(error.get('regerr'));
-			}else if(err == 2){
-				return cb(error.get('syserr'));
+			if(err) {
+				return cb(err);
 			}
 			cache(user);
 			return cb(null);
 		});
-
 	});
 }
 
