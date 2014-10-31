@@ -28,8 +28,11 @@ dao.matchContent = function(content, cb) {
 			return cb(error.get("syserr"), null);
 		}
 		for(var i =0; i < results.length; i++) {
-			if(tools.matchKeyWords(results[i].regex, content, "|")){
-				return cb(null, results[i]);	//stop match
+			var test = tools.matchKeyWords(results[i].regex, content, "|")
+			if(test){
+				var ret_result = results[i];
+				ret_result.group = test;
+				return cb(null, ret_result);
 			}
 		}
 		log.daolog("info", "msg:[" + content + "] match nothing");

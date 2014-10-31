@@ -17,6 +17,7 @@ module.exports.ship = wechat(config.wechat.token).text(function (info, req, res)
 		if(err) {
 			res.reply(err);
 		}else if(result != null) {
+			var regexGroup = result.group;
 			eval(result.code);
 		}else {
 			res.reply(config.wechat.default_reply);
