@@ -13,6 +13,7 @@ var mysqlapi = require("./mysqlapi");
 
 module.exports.ship = wechat(config.wechat.token).text(function (info, req, res) {
 	log.userlog('info', 'recive: ' + info.Content);
+	info.openid = info.FromUserName;
 	dao.matchContent(info.Content, function(err, result) {
 		if(err) {
 			res.reply(err);

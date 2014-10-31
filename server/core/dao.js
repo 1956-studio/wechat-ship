@@ -6,6 +6,8 @@ var error = require('./error');
 var log = require('./log');
 var tools = require('./tools');
 
+var api = require("./api");
+var mysqlapi = require("./mysqlapi");
 
 var dao = {};
 
@@ -57,7 +59,6 @@ dao.getList = function(cb) {
 	});
 }
 
-
 /*
 what a fuck function, if not used it, item["val"] would be undefined!
 */
@@ -65,6 +66,7 @@ function getItems (item) {
 	var result = new Array(2);
 	result[0] = item["title"];
 	result[1] = function (info, req, res) {
+		info.openid = info.FromUserName;
 		eval(item["code"]);
 	};
 	return result;

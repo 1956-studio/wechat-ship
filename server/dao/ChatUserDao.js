@@ -35,7 +35,7 @@ ChatUserSchema.methods.Save = function(done) {
 /*
  * @param user{Object]
 */
-ChatUserSchema.statics.czreateUser = function (user, done) {
+ChatUserSchema.statics.createUser = function (user, done) {
 	var Schema = this;
 	var model = new Schema(user);
 	return model.Save(done);

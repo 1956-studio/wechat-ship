@@ -31,6 +31,9 @@ error.init = function(){
 }
 
 error.get = function(key) {
+	if(!doc) {
+		return '系统错误';
+	}
 	for(var i = 0; i < doc.length; i++) {
 		if(errorInfo[i].tag == key) {
 			return errorInfo.message;

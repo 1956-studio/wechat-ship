@@ -65,7 +65,7 @@ LogSchema.statics.getResult = function(num, message, times, cb) {
 		return cb(null, paginatedResults, page);
 	}
 
-	this.paginate(condition, num, config.page.size,  paginateCallback);
+	this.paginate(condition, num, config.page.size,  paginateCallback, {sortBy: { time: -1}});
 }
 
 
