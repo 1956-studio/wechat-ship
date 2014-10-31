@@ -94,7 +94,7 @@ var handleRequest = function(req, res) {
 		try{
 			eval(dataObj.Code);
 		}catch(e){
-			res.end(e.toString());
+			res.end(e.toString() + ' ' + e.stack);
 		}
 	});
 }

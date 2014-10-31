@@ -181,11 +181,11 @@ api.updateUser = function (info, userInfo, cb) {
 	if(!cb || typeof cb !== 'function') {
 		cb = function () {};
 	}
-	var user = {
+	var a_user = {
 		openid: info.FromUserName,
 		info: userinfo
 	};
-	user.updateUser(user, cb);
+	user.updateUser(a_user, cb);
 }
 
 api.findUser = function (info, cb) {
