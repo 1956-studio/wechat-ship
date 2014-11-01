@@ -4,17 +4,15 @@ var serverController =  require("../controllers/server");
 
 
 describe("Server", function(){
-	it("list", function(done){
-		serverController.startup(8000);
-		serverController.startup(8001);
-		serverController.list(function(err, res){
-			res.length.should.eql(2);
-			done();
-		});
+	it('start one server', function(done) {
+		serverController.startup(8000, 1, done);
 	});
-	it("restart all", function(done){
-		serverController.restartAll(function(err, res){
-			res.should.be.an.Object;
+	it('start two server', function(done) {
+		serverController.startup(8000, 2, done);
+	});
+	it("list", function(done){
+		serverController.list(function(err, res){
+			res.length.should.eql(3);
 			done();
 		});
 	});

@@ -95,8 +95,9 @@ router.get("/config/log", auth.Auth, config.getLog);
 router.get("/server", auth.Auth, server.listStatus);
 router.all("/server/startup", auth.Auth, server.startup);
 router.get("/server/liststatus", auth.Auth, server.listStatus);
-router.get("/server/stop", auth.Auth, server.stop);
-router.get("/server/restart", auth.Auth, server.restart);
+router.get("/server/stop/:name", auth.Auth, server.stop);
+router.get("/server/reload/:name", auth.Auth, server.reload);
+router.get("/server/start/:name", auth.Auth, server.start);
 
 router.get("/test", auth.Auth, test.index);
 router.post("/test", auth.Auth, test.exec);

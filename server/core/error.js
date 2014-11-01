@@ -12,9 +12,14 @@ defaultError.push(new errosModel({tag: 'msgnull', message: '消息为空'}));
 defaultError.push(new errosModel({tag: 'regerr', message: '已经注册过了'}));
 defaultError.push(new errosModel({tag: 'nouser', message: '没有找到这个用户'}));
 
-error.init = function(){
+error.init = function(cb){
+	errorInfo = null;
+	if(!cb || typeof cb !== 'function') {
+		cb = function () {};
+	}
 	errosModel.Find({}, function (err, doc) {
 		if(err) {
+			cb(err);
 			return console.log(err);
 		}else if(!doc || doc.length == 0) {
 			for(var i in defaultError) {
@@ -26,6 +31,7 @@ error.init = function(){
 			errorInfo = doc;
 			console.log('error info init ok!');
 		}
+		cb()
 	});
 	
 	

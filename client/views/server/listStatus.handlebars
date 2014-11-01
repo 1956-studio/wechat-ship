@@ -7,23 +7,21 @@
 	<input type="button" onclick="subform('start_form')" value="startup">
 </form>
 
-<a href="#" onclick="to('/server/stop')">stop</a>
-<a href="#" onclick="to('/server/restart')">restart</a>
-
-
 <table>
 	<tr>
-		<td>app</td><td>port</td><td>status</td>
+		<td>app name</td><td>pwd</td><td>status</td>
 		{{#if result}}
 		{{#list result}}
 		<tr>
-		<td>{{uid}}</td>
-		<td>{{file}}</td>
-		<td>{{options}}</td>
-		<td>{{#if running}}Running{{else}}Not running{{/if}}</td>
+		<td>{{name}}</td>
+		<td>{{pwd}}</td>
+		<td>{{status}}</td>
+		<td><a href='#' onclick="to('/server/start/{{name}}')">reload</a></td>
+		<td><a href='#' onclick="to('/server/reload/{{name}}')">reload</a></td>
+		<td><a href='#' onclick="to('/server/stop/{{name}}')">stop</a></td>
 		</tr>
 		{{/list}}
 		{{/if}}
-	</tr>	
+	</tr>
 </table>
 

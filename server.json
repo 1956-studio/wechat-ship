@@ -1,0 +1,7 @@
+[{
+  "name"		: "server:80",
+  "script"		: "app.js",
+  "error_file"	: "/client/logs/error.log",
+  "out_file"	: "/client/logs/out.log",
+  "exec_mode"	: "cluster_mode"
+}]

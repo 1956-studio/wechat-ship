@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 var _ = require("underscore");
+var async = require('async');
 
+var config = require("../config");
 var log = require('./log');
 var ListSchema = require('../dao/ListDao');
 var RegexSchema = require('../dao/RegexDao');
@@ -29,6 +31,26 @@ var list = null;
 // 		user = doc;
 // 	}
 // });
+
+db.loadDB = function(cb) {
+	if(!cb || typeof cb !== 'function') {
+		cb = function() {};
+	}
+	regex = null;
+	list = null;
+	async.parallel([
+  		function (callback) {
+  			db.findRegex(callback);
+  		},
+  		function (callback) {
+  			db.findList(callback);
+  		},
+  		],
+  		function (err) {
+  			cb(err);
+  		}
+  	);
+}
 
 // regex
 db.findRegex = function(cb) {
