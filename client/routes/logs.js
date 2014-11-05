@@ -12,6 +12,7 @@ logs.list = function(req, res) {
 				res.writeHead(404);
 				res.end();
 			}else{
+				page.url = '/logs'
 				var m_results = {
 					headTitle: "logs",
 					logs: results,

@@ -25,7 +25,7 @@ uccess at port: 80", "timestamp" : ISODate("2014-08-18T07:37:59.205Z"), "level"
 			// do nothing
 		}
 	}
-	if(typeof page !== 'number') {
+	if(!page || typeof page !== 'number') {
 		page = 1;
 	}
 	logsModel.getResult(page, message, m_times, cb);

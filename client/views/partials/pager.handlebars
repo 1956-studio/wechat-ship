@@ -1,3 +1,40 @@
 
+  <div id="example"></div>
+    <script type='text/javascript'>
+       var options = {
+            currentPage: {{page.current}},
+            totalPages: {{page.total}},
+            useBootstrapTooltip:true,
+            tooltipTitles: function (type, page, current) {
+                switch (type) {
+                case "first":
+                    return "Go To First Page <i class='icon-fast-backward icon-white'></i>";
+                case "prev":
+                    return "Go To Previous Page <i class='icon-backward icon-white'></i>";
+                case "next":
+                    return "Go To Next Page <i class='icon-forward icon-white'></i>";
+                case "last":
+                    return "Go To Last Page <i class='icon-fast-forward icon-white'></i>";
+                case "page":
+                    return "Go to page " + page + " <i class='icon-file icon-white'></i>";
+                }
+            },
+            bootstrapTooltipOptions: {
+                html: true,
+                placement: 'bottom'
+            },
+            alignment:'left',
+            size:'normal',
+            itemContainerClass: function (type, page, current) {
+                return (page === current) ? "active" : "pointer-cursor";
+            },
+            onPageClicked: function(e, originalEvent, type, page){
+                console.log('{{page.url}}/' + page)
+                to('{{page.url}}/' + page);
+            }
+        }
+        $('#example').bootstrapPaginator(options);
+    </script>
+    
 第{{page.current}}页/每页{{page.size}}条
 共{{page.total}}页， 共{{page.count}}条

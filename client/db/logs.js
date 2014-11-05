@@ -60,7 +60,8 @@ LogSchema.statics.getResult = function(num, message, times, cb) {
 		var page = {
 			total: pageCount,
 			/*总页数: 共total页*/
-			count: itemCount /*总条数： 共count条*/
+			count: itemCount, /*总条数： 共count条*/
+			current: num
 		};
 		return cb(null, paginatedResults, page);
 	}
