@@ -24,8 +24,8 @@ chatUser.detail = function (req, res) {
 			res.writeHead(404);
 			res.end(err);
 		}else {
-			console.log('ok', result);
 			result.headTitle = "chatUser - detail";
+			result.info = JSON.stringify(result.info);
 			res.render("chatUser/detail", result);
 		}
 	})
@@ -33,13 +33,15 @@ chatUser.detail = function (req, res) {
 
 // POST: /chatUser/:id
 chatUser.update = function (req, res) {
-	chatUserController.updateObject(req.body, function (err) {
+	var input = req.body;
+	input.info = JSON.parse(input.info);
+	chatUserController.updateObject(input, function (err) {
 		if(err) {
 			res.writeHead(404);
 			res.end();
 			return;
 		}
-		res.redirect("/chatUser/detail/" + req.body.id);
+		res.redirect("/chatUser/" + req.body.id);
 	});
 }
 

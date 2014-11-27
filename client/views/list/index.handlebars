@@ -25,9 +25,9 @@
   </table>
 </div>
 <!-- Modal -->
-<div class="modal" id="List_Modal" tabindex="-1" role="dialog" >
-  <div class="modal-dialog">
-    <div class="modal-content">
+<div class="modal" id="List_Modal" tabindex="-1" data-replace="true">
+  <!-- <div class="modal-dialog"> -->
+    <!-- <div class="modal-content"> -->
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;
         </span><span class="sr-only">Close</span></button>
@@ -35,7 +35,7 @@
       </div>
       <div class="modal-body">
        <!--form begin-->
-       <form id="list_form" action="/list/addlist" method="post" >
+       <form id="list_form" class="form" action="/list/addlist" method="post" >
        		title: <input id="title_input" type="text" name="name" />
        </form>
        <!--form end -->
@@ -45,7 +45,7 @@
         <button type="button" class="btn btn-primary" 
         onclick="$('#List_Modal').modal('hide'); subform('list_form'); ">Save</button>
       </div>
-    </div>
-  </div>
+    <!-- </div> -->
+  <!-- </div> -->
 </div>
 

@@ -1,9 +1,9 @@
 
-<form id="form_update" action="/chatUser/update" method="post">
+<form class="form" id="form_update" action="/chatUser/{{id}}" method="post">
 <table>
 <input type="hidden" value="{{id}}" name="id" />
 	<tr>
-		<td>title</td><td> <input type="text" name="openid" value="{{openid}}" /> </td>
+		<td>openid</td><td> <input type="text" name="openid" value="{{openid}}" /> </td>
 	</tr>
 	<tr>
 		<td>regTime</td><td> <input type="text" name="regTime" value="{{regTime}}" /> </td>
