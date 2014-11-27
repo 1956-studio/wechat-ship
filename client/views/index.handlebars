@@ -11,6 +11,7 @@
     <script type="text/javascript" src="/static/plugin/codemirror/mode/javascript/javascript.js"></script>
     <script type="text/javascript" src="/static/plugin/bootstrap.growl/bootstrap-growl.min.js"></script>
     <script type="text/javascript" src="/static/plugin/bootstrap-paginator/build/bootstrap-paginator.min.js"></script>
+    <script type="text/javascript" src="/static/plugin/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 
     <link rel='stylesheet' href='/static/plugin/nprogress/nprogress.css'>
     <link rel="stylesheet" href="/static/plugin/bootstrap/dist/css/bootstrap.min.css">
@@ -20,6 +21,7 @@
     <link rel="stylesheet" href="/static/plugin/codemirror/theme/monokai.css">
     <link rel="stylesheet" href="/static/plugin/bootstrap-paginator/css/bootstrap-responsive.min.css">
     <link rel="stylesheet" href="/static/plugin/bootstrap-paginator/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap-datepicker/css/datepicker3.css">
     
 
     <script>
@@ -118,19 +120,48 @@
 </head>
 <body>
 
-<a href="#" onclick="$('#UserModal').modal('show')">welcome: {{user.username}}</a>
+<a href="#" onclick="$('#UserModal').modal('show')"></a>
 
-<a href="/logout">logout</a>
 
-<ul>
-	<li><a href="#" onclick="to('/regex');">regex</a></li>
-	<li><a href="#" onclick="to('/list');">list</a></li>
-	<li><a href="#" onclick="to('/logs');">logs</a></li>
-	<li><a href="#" onclick="to('/errors')">error</a></li>
-	<li><a href="#" onclick="to('/server')">server</a></li>
-	<li><a href="#" onclick="to('/test')">test</a></li>
-	<li><a href="#" onclick="to('/chatUser')">chatUser</a></li>
-</ul>
+
+<nav class="navbar navbar-default" role="navigation">
+	 <div class="container-fluid">
+	 	<!-- Brand and toggle get grouped for better mobile display -->
+	 	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+     	</button>
+      <a class="navbar-brand" href="#">Wechat-Ship</a>
+	 </div>
+
+	 <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    	<ul class="nav navbar-nav">
+	        <li><a href="#" onclick="to('/errors')">error</a></li>
+	        <li><a href="#" onclick="to('/logs');">logs</a></li>
+	       	<li><a href="#" onclick="to('/server')">server</a></li>
+	       	<li><a href="#" onclick="to('/chatUser')">chatUser</a></li>
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">回复管理 <span class="caret"></span></a>
+	          <ul class="dropdown-menu" role="menu">
+					<li><a href="#" onclick="to('/regex');">regex</a></li>
+					<li><a href="#" onclick="to('/list');">list</a></li>
+				</ul>
+			</li>
+	    </ul>
+	    <ul class="nav navbar-nav navbar-right">
+	    	<li><a href="#">Welcome: </a></li>
+	    	<li class="dropdown">
+	    		<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user.username}} <span class="caret"></span></a>
+	    		<ul class="dropdown-menu" role="menu">
+	    			<li><a href="/logout">logout</a></li>
+	    		</ul>
+	    	</li>
+	    </ul>
+    </div>	
+</nav>
 
 <div id='body'> </div>
 

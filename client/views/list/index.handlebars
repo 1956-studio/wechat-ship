@@ -1,29 +1,29 @@
 
 <!-- Button trigger modal -->
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#List_Modal">
+<button class="btn btn-default btn-lg" data-toggle="modal" data-target="#List_Modal">
   add List
 </button>
 
-
-<table>
-	<tr>
-		<td>name</td><td>views</td>
-		{{#list list}}
-			<tr>
-  			<td> <a href="#" onclick="to('/list/detail/{{{id}}}')"> {{{name}}} </td>
-  			<td>
-  				{{#list views}}
-  					<ul>
-  						<li>{{{title}}} </li>
-  					</ul>
-  				{{/list}}
-  			</td>
-        <td><a href='#' onclick='to("/list/{{{id}}}", "DELETE")'>delete</a></td>
-			</tr>
-		{{/list}}
-	</tr>
-</table>
-
+<div class="panel panel-default">
+  <table class="table">
+  	<tr>
+  		<td>name</td><td>views</td>
+  		{{#list list}}
+  			<tr>
+    			<td> <a href="#" onclick="to('/list/detail/{{{id}}}')"> {{{name}}} </td>
+    			<td>
+    				{{#list views}}
+    					<ul>
+    						<li>{{{title}}} </li>
+    					</ul>
+    				{{/list}}
+    			</td>
+          <td><a href='#' onclick='to("/list/{{{id}}}", "DELETE")'>delete</a></td>
+  			</tr>
+  		{{/list}}
+  	</tr>
+  </table>
+</div>
 <!-- Modal -->
 <div class="modal" id="List_Modal" tabindex="-1" role="dialog" >
   <div class="modal-dialog">

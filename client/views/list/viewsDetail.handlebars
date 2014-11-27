@@ -21,7 +21,8 @@
 
 <form id="view_form" action="/list/{{id}}/view/save/{{view.id}}" method="post">
   <input name="id" type="hidden" value="{{view.id}}"/>
-	<table>
+  <div class="panel panel-default">
+	<table class="table">
 		<tr>
 			<td>title: </td>
 			<td><input type="text" name="title" value="{{view.title}}" /></td>
@@ -34,4 +35,5 @@
 			<tr><td><input type="button" value="save" onclick="subform('view_form')"></td></tr>
 		</tr>
 	</table>
+  <div>
 </form>

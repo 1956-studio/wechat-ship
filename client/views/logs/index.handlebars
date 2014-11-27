@@ -1,16 +1,27 @@
-<h2>logs</h2>
+<h2>日志</h2>
 
-<h5>search</h5>
-<form id="searchform" action="/logs" method="get">
-	关键字<input name="message" type="text" /> 时间<input type="text" name="begtime" /> - <input type="text" name="endtime" />
-	<input type="button" value="查询" onclick="subform('searchform')" />
+<script>
+$('.datepicker').datepicker()
+</script>
+
+<form id="searchform" action="/logs" method="get" role="form" onsubmit="return false">
+	<div class="input-group form-inline">
+		<label for="guanjianzi">关键字</label>
+		<input name="message" class="form-control" id="guanjianzi" type="text" /> 
+	</div>
+
+	<div class="form-group">
+		<label for="guanjianzi">时间</label>
+		<input type="text" name="begtime" data-provide="datepicker"/> - <input type="text" name="endtime" data-provide="datepicker"/>
+	</div>
+	<button class="btn btn-default" onclick="subform('searchform')">查询</button>
 </form>
 
-<ul>
-	<table>
-		<th>
+<div class="panel panel-default">
+	<table class="table">
+		<tr>
 			<td>level</td><td>time</td><td>message</td>
-		</th>
+		</tr>
 		{{#list logs}}
 		<tr>
 			<td>{{{level}}}</td><td>{{{time}}}</td><td>{{{message}}}</td>
@@ -19,4 +30,4 @@
 	</table>
 	
 	{{> pager}}
-</ul>
+</div>

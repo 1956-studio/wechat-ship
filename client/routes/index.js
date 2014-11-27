@@ -6,7 +6,7 @@ var logs = require("./logs");
 var regex = require("./regex");
 var list = require("./list");
 var config = require("./config");
-var server = require("./server");
+// var server = require("./server");
 var test = require("./test");
 var user = require("./user");
 var errors = require("./errors");
@@ -92,12 +92,12 @@ router.get("/config/app", auth.Auth, config.getApp);
 router.get("/config/db", auth.Auth, config.getDb);
 router.get("/config/log", auth.Auth, config.getLog);
 
-router.get("/server", auth.Auth, server.listStatus);
-router.all("/server/startup", auth.Auth, server.startup);
-router.get("/server/liststatus", auth.Auth, server.listStatus);
-router.get("/server/stop/:name", auth.Auth, server.stop);
-router.get("/server/reload/:name", auth.Auth, server.reload);
-router.get("/server/start/:name", auth.Auth, server.start);
+// router.get("/server", auth.Auth, server.listStatus);
+// router.all("/server/startup", auth.Auth, server.startup);
+// router.get("/server/liststatus", auth.Auth, server.listStatus);
+// router.get("/server/stop/:name", auth.Auth, server.stop);
+// router.get("/server/reload/:name", auth.Auth, server.reload);
+// router.get("/server/start/:name", auth.Auth, server.start);
 
 router.get("/test", auth.Auth, test.index);
 router.post("/test", auth.Auth, test.exec);

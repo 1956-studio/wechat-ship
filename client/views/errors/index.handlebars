@@ -3,18 +3,18 @@
 <button class="btn btn-primary btn-lg" onclick="openDialog()">
   add Error
 </button>
-
-<table>
-	<tr>
-		<td>tag</td><td>message</td>
-	</tr>
-	{{#list errors}}
-	<tr>
-		<td><a href="#" onclick="openDialog('{{{id}}}', '{{{tag}}}', '{{{message}}}')">{{{tag}}}</a></td><td>{{{message}}}</td><td><a href="#" onclick='to("/errors/{{{id}}}", "DELETE")'>删除</a>
-	</tr>
-	{{/list}}
-</table>
-
+<div class="panel panel-default">
+  <table class="table">
+  	<tr>
+  		<td>tag</td><td>message</td>
+  	</tr>
+  	{{#list errors}}
+  	<tr>
+  		<td><a href="#" onclick="openDialog('{{{id}}}', '{{{tag}}}', '{{{message}}}')">{{{tag}}}</a></td><td>{{{message}}}</td><td><a href="#" onclick='to("/errors/{{{id}}}", "DELETE")'>删除</a>
+  	</tr>
+  	{{/list}}
+  </table>
+</div>
 <!-- Modal -->
 <div class="modal" id="Error_Modal" tabindex="-1" role="dialog" >
   <div class="modal-dialog">
