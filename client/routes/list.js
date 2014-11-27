@@ -35,7 +35,6 @@ list.detail = function(req, res) {
 
 // POST: /list/addlist
 list.addList = function (req, res) {
-	console.log(req.body);
 	listControllers.addList(req.body, function (err, result) {
 		if(err) {
 			res.writeHead(400);

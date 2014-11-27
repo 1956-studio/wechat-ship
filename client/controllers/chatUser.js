@@ -26,7 +26,6 @@ chatUserController.getObject = function (id, cb) {
 
 chatUserController.updateObject = function (chatUser, cb) {
 	chatUserModel.findByIdAndUpdate(chatUser.id, chatUser, function (err) {
-		console.log('iii');
 		if(err) {
 			log.dblog('error', 'chatUserController updateObject: ' + err);
 			return cb(err);

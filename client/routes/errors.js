@@ -1,4 +1,5 @@
 var errorsControllers = require("../controllers/errors.js");
+var log = require('../log');
 
 var errors = {};
 
@@ -25,7 +26,6 @@ errors.update = function (req, res) {
 	errorsControllers.update(error, function (err) {
 		if(err) {
 			res.writeHead(400);
-			console.log(err);
 			res.end(err);
 		}else {
 			req.method = 'GET';
@@ -41,7 +41,7 @@ errors.create = function (req, res) {
 			if(!err) {
 				var m_result = {
 					headTitle: 'Error',
-					errors: doc
+					errors: err
 				}
 				res.render('errors/index', m_result);
 			}else {
@@ -56,7 +56,6 @@ errors.delete = function (req, res) {
 	errorsControllers.delete(req.params.id, function (err) {
 		if(err) {
 			res.writeHead(400);
-			console.log(err);
 			res.end(err);
 		}else {
 			req.method = 'GET';
