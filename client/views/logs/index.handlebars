@@ -7,14 +7,17 @@ $('.datepicker').datepicker()
 <form id="searchform" action="/logs" method="get" role="form" onsubmit="return false">
 	<div class="input-group form-inline">
 		<label for="guanjianzi">关键字</label>
-		<input name="message" class="form-control" id="guanjianzi" type="text" /> 
+		<input name="message" id="guanjianzi" type="text" /> 
 	</div>
-
-	<div class="form-group">
-		<label for="guanjianzi">时间</label>
-		<input type="text" name="begtime" data-provide="datepicker"/> - <input type="text" name="endtime" data-provide="datepicker"/>
+	<div class="input-group">
+		<label for="time">时间</label>
+		<input type="text" id="time" name="begtime" data-provide="datepicker"/> 
+		- 
+		<input id="time" type="text" name="endtime" data-provide="datepicker"/>
 	</div>
-	<button class="btn btn-default" onclick="subform('searchform')">查询</button>
+	<div class="input-group">
+		<button class="btn btn-default" onclick="subform('searchform')">查询</button>
+	</div>
 </form>
 
 <div class="panel panel-default">

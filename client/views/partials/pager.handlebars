@@ -1,5 +1,5 @@
 
-  <div id="example"></div>
+  <div id="pageinate"></div>
     <script type='text/javascript'>
        var options = {
             currentPage: {{page.current}},
@@ -33,8 +33,7 @@
                 to('{{page.url}}/' + page);
             }
         }
-        $('#example').bootstrapPaginator(options);
+        $('#pageinate').bootstrapPaginator(options);
     </script>
     
-第{{page.current}}页/每页{{page.size}}条
-共{{page.total}}页， 共{{page.count}}条
+<div class="well well-sm">第{{page.current}}页  每页{{page.size}}条 | 共{{page.total}}页， 共{{page.count}}条</div>

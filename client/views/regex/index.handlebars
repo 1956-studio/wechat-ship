@@ -3,13 +3,13 @@
 <ul>
 <div class="panel panel-default">
 	<table class="table">
-		<th>
-			<td>title</td><td>regex</td>
-		</th>
+		<tr>
+			<td>title</td><td>regex</td><td>operation</td>
+		</tr>
 		{{#list regex}}
 		<tr>
 			<td><a href="#" onclick="to('/regex/detail/{{{id}}}')">{{{title}}}</a></td><td>{{{regex}}}</td>
-			<td><a href="#" onclick="to('/regex/{{id}}', 'DELETE')">删除</a></td>
+			<td><a href="#" onclick="to('/regex/{{id}}', 'DELETE')">delete</a></td>
 		</tr>
 		{{/list}}
 	</table>
