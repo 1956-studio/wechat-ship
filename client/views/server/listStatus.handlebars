@@ -1,13 +1,16 @@
 <p color="red">{{err}}</p>
 
-启动服务：
+<ul>
 <form id="start_form" action="/server/startup" method="post">
+	<label>启动服务：</label>
 	<input type="text" name="port" />
 	<input type="text" name="num"/>
 	<input type="button" onclick="subform('start_form')" value="startup">
 </form>
-
-<table>
+</ul>
+<ul>
+<div class="panel panel-default">
+<table class="table">
 	<tr>
 		<td>app name</td><td>pwd</td><td>status</td>
 		{{#if result}}
@@ -24,4 +27,5 @@
 		{{/if}}
 	</tr>
 </table>
-
+</div>
+</ul>

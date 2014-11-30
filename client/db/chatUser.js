@@ -8,7 +8,8 @@ var UserSchema = new mongoose.Schema({
 	},
 	regTime: {
 		type: Date,
-		require: true
+		require: true,
+		get: getTime
 	},
 	nickname: {
 		type: String
@@ -18,5 +19,11 @@ var UserSchema = new mongoose.Schema({
 	}
 });
 
+function getTime (date) {
+	if(!date) {
+		return 'no-date';
+	}
+	return date.getFullYear() + '-' + (date.getMonth() + 1) + date.getDate()
+}
 
 mongoose.model('chatUser', UserSchema);
