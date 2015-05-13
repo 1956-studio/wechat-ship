@@ -5,11 +5,11 @@ wechat-ship
 
 ------------------
 ###Installation
-···
+```
 git clone https://github.com/1956-studio/wechat-ship
 cd wechat-ship
 npm install .
-···
+```
 ###Quick Start
 
 start web client
