@@ -4,6 +4,28 @@ wechat-ship
 微信平台后台管理,快速搭建微信平台
 
 ------------------
+###Installation
+···
+git clone https://github.com/1956-studio/wechat-ship
+cd wechat-ship
+npm install .
+···
+###Quick Start
+
+start web client
+```
+cd client
+node app.js 3000 //port num, default 3000.Notice: do not set port in 80.
+```
+start server
+```
+cd server
+node app.js
+node core/testServer.js
+```
+
+goto http://localhost:3000
+
 ###api:
 
 常用操作：
