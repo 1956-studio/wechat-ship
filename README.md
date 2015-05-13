@@ -26,7 +26,7 @@ node core/testServer.js
 
 goto http://localhost:3000
 
-###api:
+###API:
 
 常用操作：
 ```
